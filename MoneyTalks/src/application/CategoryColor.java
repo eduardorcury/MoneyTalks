@@ -57,12 +57,11 @@ public class CategoryColor extends Category{
 					this.getCategoryColor().getRed()*255 + "," +  
 					this.getCategoryColor().getGreen()*255 + "," +
 					this.getCategoryColor().getBlue()*255 + ");" +
-					"-fx-border-width: 5");                              
+					"-fx-border-width: 5");
+			buttonColor = new Color(this.getCategoryColor().getRed(), 
+					this.getCategoryColor().getGreen(),
+					this.getCategoryColor().getBlue(), 1.0);
 		});
-		
-		buttonColor = new Color(this.getCategoryColor().getRed(), 
-				this.getCategoryColor().getGreen(),
-				this.getCategoryColor().getBlue(), 1.0);
 		
 		return buttonColor;
 			
