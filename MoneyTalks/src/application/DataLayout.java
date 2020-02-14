@@ -5,23 +5,27 @@ import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class DataLayout {
 
 	public HBox valueHBox;
 	public HBox categoryHBox;
+	public HBox calendarHBox;
 	public VBox completeVBox;
 	public Label valueLabel;
 	public Label categoryLabel;
+	public Label calendarLabel;
+	public DatePicker calendar;
 	public Button cancelButton;
 	public Button confirmButton;
 	public Button addNewCategoryButton;
@@ -29,37 +33,54 @@ public class DataLayout {
 	public TextField categoryField;
 	public Stage addNewCategoryStage;
 	public TableView<Data> contentLogs;
+	public ComboBox<String> typeComboBox = new ComboBox<>();
 	
 	public static ComboBox<String> categoryComboBox = new ComboBox<>();
 
 	
 	public VBox newData() {
 		
-		addNewCategoryButton = new Button("Add");
-		categoryLabel = new Label("Category");
-		valueLabel = new Label("Amount");
+		addNewCategoryButton = new Button();
+		categoryLabel = new Label("Category:");
+		valueLabel = new Label("Amount:");
+		calendarLabel = new Label("Day:");
 		valueInput = new TextField();
-		categoryHBox = new HBox(10);
-		completeVBox = new VBox(20);
 		valueHBox = new HBox(10);
+		categoryHBox = new HBox(10);
+		calendarHBox = new HBox(10);
+		completeVBox = new VBox(20);
+		calendar = new DatePicker();
 		
-		valueInput.setPromptText("$");
-		valueInput.setPrefWidth(100);
-		valueHBox.setPadding(new Insets(0, 90, 0, 0));
+		valueInput.setPromptText("Enter value");
+		valueInput.setPrefWidth(120);
 		valueHBox.setPrefWidth(300);
-		valueHBox.setAlignment(Pos.CENTER_RIGHT);
+		valueHBox.setPadding(new Insets(0, 0, 0, 10));
 		categoryHBox.setMinHeight(20);
 		categoryHBox.setMaxHeight(20);
 		categoryHBox.setPrefWidth(300);
-		categoryHBox.setAlignment(Pos.CENTER_RIGHT);
-
+		calendarHBox.setPrefWidth(300);
+		calendarHBox.setPadding(new Insets(0, 0, 0, 32));
+		calendar.getStylesheets().add("DatePicker.css");
+		calendar.setPromptText("Enter item date");
+		calendar.setEditable(false);
+		valueHBox.setAlignment(Pos.CENTER_LEFT);
+		categoryHBox.setAlignment(Pos.CENTER_LEFT);
+		calendarHBox.setAlignment(Pos.CENTER_LEFT);
+		addNewCategoryButton.setId("add-button");
+		
+		typeComboBox.setPrefWidth(80);
+		typeComboBox.getItems().addAll("Expense", "Income");
+		
+		typeComboBox.setPromptText("Type");
 		addNewCategoryButton.setOnAction(event -> AddNewCategory.addNewCategoryWindow());
 
-		valueHBox.getChildren().addAll(valueLabel, valueInput);
+		valueHBox.getChildren().addAll(valueLabel, valueInput, typeComboBox);
 		categoryHBox.getChildren().addAll(categoryLabel, getCategoryComboBox(), addNewCategoryButton);
-		completeVBox.getChildren().addAll(valueHBox, categoryHBox, getContentLogs());
+		calendarHBox.getChildren().addAll(calendarLabel, calendar);
+		completeVBox.getChildren().addAll(valueHBox, categoryHBox, calendarHBox, getContentLogs());
 		completeVBox.setPadding(new Insets(30, 30, 30, 30));
-	
+		
+		completeVBox.getStylesheets().add("DataLayout.css");
 		return completeVBox;
 		
 	}

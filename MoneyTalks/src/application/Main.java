@@ -1,13 +1,10 @@
 package application;
 
-
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.Button;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -24,28 +21,22 @@ public class Main extends Application {
 	}
 
 	public void start(Stage primaryStage) throws Exception {
-		
-		ColorPicker colorPicker = new ColorPicker();
-		colorPicker.getStyleClass().add("split-button");
-		
-		DatePicker datePicker1 = new DatePicker();
-		DatePicker datePicker2 = new DatePicker();
-		datePicker1.getStylesheets().add("DatePicker.css");
-		
-		datePicker1.setPromptText("Enter item date");
-		
-		VBox dateBox = new VBox();
-		dateBox.getChildren().addAll(datePicker1, datePicker2);
 
 		window = primaryStage;
 		window.setTitle("MoneyTalks");
 		window.setMaximized(true);
-		
+
 		BorderPane layout = new BorderPane();
 		layout.setTop(menu.menuItems());
-		layout.setCenter(colorPicker);
-		layout.setLeft(dateBox);
 		layout.setRight(dataLayout.newData());
+
+		Button teste = new Button();
+		teste.setStyle("-fx-background-image: url(\"../icons/add-icon2.png\");" + "-fx-background-radius: 50;"
+				+ "-fx-min-width: 300;" + "-fx-min-height: 300;" + "-fx-max-width: 300;" + "-fx-max-height: 300;"
+		+ "-fx-background-color: rgb(86, 6, 172);");
+		layout.setCenter(teste);
+		
+		
 		scene = new Scene(layout, 400, 300);
 		window.setScene(scene);
 		window.show();
