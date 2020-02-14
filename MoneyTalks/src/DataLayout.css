@@ -1,0 +1,31 @@
+.label {
+	-fx-font: normal normal 15 monospace;
+}
+
+
+#add-button {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-radius: 5;
+	-fx-border-width: 2;
+	-fx-background-image: url("../icons/add-icon.png");
+	-fx-background-size: 30;
+	-fx-background-radius: 5;
+	-fx-min-width: 30; 
+    -fx-min-height: 30;
+    -fx-max-width: 30; 
+    -fx-max-height: 30;
+    -fx-effect: dropshadow( gaussian , rgba(86, 6, 172, 0.3) , 8, 0.3 , 2 , 2);
+}
+
+#add-button:hover {
+	-fx-background-color: rgba(86, 6, 172, 0.3);
+	-fx-cursor: hand;
+}
+
+#add-button:focused {
+	-fx-border-color: rgb(86, 6, 172);
+}
+
+
+
+
