@@ -1,7 +1,39 @@
 .label {
-	-fx-font: normal normal 15 monospace;
+	-fx-font: normal normal 15 serif;
+	-fx-text-fill: white;
 }
 
+.vbox {
+	-fx-background-color: rgb(144, 144, 144);
+	-fx-border-color: rgb(80,80,80);
+	-fx-border-width: 2;
+	-fx-max-width: 330;
+	-fx-min-width: 330;
+	-fx-pref-height: 170;
+	-fx-max-height: 170;
+	
+}
+
+.vbox:hover {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 2;
+	-fx-effect: dropshadow( gaussian , rgb(144, 144, 144) , 12 , 0.3 , -5 , 5 );
+}
+
+.hbox {
+	-fx-background-color: transparent;
+	-fx-border-color: white;
+	-fx-border-width: 0;
+	-fx-border-radius: 0;
+	-fx-pref-height: 40;
+	-fx-min-height: 40;
+	-fx-max-height: 40;
+	-fx-pref-width: 300;
+}
+
+.separator {
+
+}
 
 #add-button {
 	-fx-border-color: rgb(86, 6, 172);
@@ -26,6 +58,19 @@
 	-fx-border-color: rgb(86, 6, 172);
 }
 
+.text-field {
+	-fx-min-width: 100;
+	-fx-max-width: 100;
+}
 
+#combo-box1 {
+	-fx-min-width: 110;
+	-fx-max-width: 110;
+}
+
+#combo-box2 {
+	-fx-min-width: 150;
+	-fx-max-width: 150;
+}
 
 
