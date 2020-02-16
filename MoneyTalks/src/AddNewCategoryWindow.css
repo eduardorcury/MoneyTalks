@@ -1,0 +1,14 @@
+.button {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 2;
+	-fx-border-radius: 8;
+	-fx-background-radius: 8;
+	-fx-min-height: 30;
+	-fx-max-height: 30;
+	-fx-min-width: 80;
+	-fx-max-width: 80
+}
+
+.label {
+	-fx-font: bold normal 15 serif;
+}

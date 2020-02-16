@@ -5,7 +5,6 @@ import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -15,8 +14,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class DataLayout {
@@ -39,11 +38,14 @@ public class DataLayout {
 	public Separator separator1;
 	public Separator separator2;
 	public ComboBox<String> typeComboBox = new ComboBox<>();
-
+	
+	public Font font = new Font("Ubuntu Bold", 16);
+	
 	public static ComboBox<String> categoryComboBox = new ComboBox<>();
 
 	public VBox newData() {
 
+		
 		separator1 = new Separator(Orientation.HORIZONTAL);
 		separator2 = new Separator(Orientation.HORIZONTAL);
 		separator1.setCenterShape(true);
@@ -89,6 +91,15 @@ public class DataLayout {
 		completeLayout.setPadding(new Insets(10, 10, 10, 10));
 		//completeLayout.setVgap(2);
 
+		valueLabel.setFont(font);
+		categoryLabel.setFont(font);
+		calendarLabel.setFont(font);
+		valueInput.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
+		calendar.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
+		categoryComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
+		typeComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
+		
+		
 		completeLayout.getStylesheets().add("DataLayout.css");
 		completeLayout.getStyleClass().add("vbox");
 		categoryHBox.getStyleClass().add("hbox");
@@ -102,9 +113,8 @@ public class DataLayout {
 	public ComboBox<String> getCategoryComboBox() {
 
 		Button addCategory = new Button("Add category");
-		addCategory.setPrefWidth(150);
+		addCategory.setPrefWidth(170);
 
-		categoryComboBox.setPrefWidth(150);
 		categoryComboBox.setOnShowing(event -> categoryComboBox.setPromptText(""));
 		categoryComboBox.setOnHiding(event -> categoryComboBox.setPromptText("Select category"));
 		categoryComboBox.setPlaceholder(addCategory);

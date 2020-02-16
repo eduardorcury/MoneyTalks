@@ -1,10 +1,6 @@
-.label {
-	-fx-font: normal normal 15 serif;
-	-fx-text-fill: white;
-}
 
 .vbox {
-	-fx-background-color: rgb(144, 144, 144);
+	-fx-background-color: white;
 	-fx-border-color: rgb(80,80,80);
 	-fx-border-width: 2;
 	-fx-max-width: 330;
@@ -32,7 +28,7 @@
 }
 
 .separator {
-
+	-fx-background-color: rgb(86, 6, 172);
 }
 
 #add-button {
@@ -61,16 +57,30 @@
 .text-field {
 	-fx-min-width: 100;
 	-fx-max-width: 100;
+	-fx-background-color: rgb(86, 6, 172);
+
 }
 
 #combo-box1 {
 	-fx-min-width: 110;
 	-fx-max-width: 110;
+	-fx-background-color: rgba(86, 6, 172, 0.3);
+	
 }
 
 #combo-box2 {
-	-fx-min-width: 150;
-	-fx-max-width: 150;
+	-fx-min-width: 170;
+	-fx-max-width: 170;
+	-fx-background-color: rgba(86, 6, 172, 0.3);
+	
 }
+
+#combo-box1:hover,
+#combo-box2:hover {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 2;
+}
+
+
 
 

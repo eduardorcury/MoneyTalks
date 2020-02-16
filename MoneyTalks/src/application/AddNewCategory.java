@@ -57,7 +57,8 @@ public class AddNewCategory extends DataLayout {
 		layout.getChildren().addAll(hbox1, buttonsLayout, hbox2);
 
 		buttonsLayout.setStyle("-fx-border-color: black;" + "-fx-border-width: 5");
-
+		
+		scene.getStylesheets().add("AddNewCategoryWindow.css");
 		addNewCategoryStage.setTitle("Add new category");
 		addNewCategoryStage.setResizable(false);
 		addNewCategoryStage.setScene(scene);
