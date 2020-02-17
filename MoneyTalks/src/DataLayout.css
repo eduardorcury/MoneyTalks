@@ -1,13 +1,11 @@
-
 .vbox {
 	-fx-background-color: white;
-	-fx-border-color: rgb(80,80,80);
+	-fx-border-color: rgb(86, 6, 172);
 	-fx-border-width: 2;
 	-fx-max-width: 330;
 	-fx-min-width: 330;
-	-fx-pref-height: 170;
-	-fx-max-height: 170;
-	
+	-fx-min-height: 200;
+	-fx-max-height: 200;
 }
 
 .vbox:hover {
@@ -58,6 +56,7 @@
 	-fx-min-width: 100;
 	-fx-max-width: 100;
 	-fx-background-color: rgb(86, 6, 172);
+	-fx-alignment: "center";
 
 }
 
@@ -77,8 +76,14 @@
 
 #combo-box1:hover,
 #combo-box2:hover {
-	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-color: rgba(86, 6, 172, 0.3);
 	-fx-border-width: 2;
+}
+
+#message-label {
+	-fx-font: 15px "Ubuntu Bold";
+	-fx-font-style: italic;
+	-fx-text-fill: rgba(86, 6, 172, 0.5);
 }
 
 

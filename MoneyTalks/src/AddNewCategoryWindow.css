@@ -6,9 +6,14 @@
 	-fx-min-height: 30;
 	-fx-max-height: 30;
 	-fx-min-width: 80;
-	-fx-max-width: 80
+	-fx-max-width: 80;
 }
 
 .label {
-	-fx-font: bold normal 15 serif;
+	-fx-font: 16px "Ubuntu Bold";
 }
+
+.text-field {
+	-fx-font: 16px "Ubuntu";
+}
+

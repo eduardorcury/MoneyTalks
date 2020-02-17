@@ -14,9 +14,12 @@ import javafx.stage.Stage;
 
 public class ChartTest extends Application {
 
-	private XYChart.Series<Number, String> gastos;
-	private CategoryAxis yAxis;
 	private NumberAxis xAxis;
+	private CategoryAxis yAxis;
+	private XYChart.Series<Number, String> ifood;
+	private XYChart.Series<Number, String> bandeco;
+	private XYChart.Series<Number, String> aluguel;
+	private XYChart.Series<Number, String> condominio;
 	private StackedBarChart<Number, String> barChart;
 
 	public static void main(String[] args) {
@@ -25,27 +28,40 @@ public class ChartTest extends Application {
 
 	public void createChart() {
 
-		XYChart.Data<Number, String> comida = new XYChart.Data<>(200, "Comida");
-		XYChart.Data<Number, String> roupa1 = new XYChart.Data<>(500, "Roupa");
-		XYChart.Data<Number, String> roupa2 = new XYChart.Data<>(300, "Roupa");
-
+		ifood = new XYChart.Series<>();
+		bandeco = new XYChart.Series<>();
+		aluguel = new XYChart.Series<>();
+		condominio = new XYChart.Series<>();
+		
+		ifood.setName("iFood");
+		bandeco.setName("Bandejão");
+		aluguel.setName("Aluguel");
+		condominio.setName("Condomínio");
+		
+		ifood.getData().add(new XYChart.Data<>(400, "Comida"));
+		bandeco.getData().add(new XYChart.Data<>(150, "Comida"));
+		aluguel.getData().add(new XYChart.Data<>(450, "Moradia"));
+		condominio.getData().add(new XYChart.Data<>(500, "Moradia"));
+		
+		XYChart.Data<Number, String> teste = new XYChart.Data<>();
+		
+		
 		yAxis = new CategoryAxis();
 		xAxis = new NumberAxis();
-		yAxis.setTickLabelFont(new Font("Ubuntu bold", 15));
+		//yAxis.setTickLabelFont(new Font("Ubuntu bold", 15));
 
-		xAxis.setLabel("Gastos");
-		yAxis.setLabel("R$");
+		yAxis.setLabel("Gastos");
+		yAxis.getCategories().addAll("iFood", "Bandejão", "Aluguel", "Condomínio");
+		xAxis.setLabel("R$");
 
-		gastos.getNode().getStyleClass().add("series-" + gastos);
-
-		gastos = new XYChart.Series<Number, String>();
-		gastos.getData().add(comida);
-		gastos.getData().addAll(roupa1, roupa2);
-		
 		barChart = new StackedBarChart<>(xAxis, yAxis);
-		barChart.getData().add(gastos);
-		barChart.setStyle("fx-bar-fill: navy;");
-		barChart.setPrefWidth(100);
+		barChart.getData().add(ifood);
+		barChart.getData().add(aluguel);
+		barChart.getData().add(condominio);
+		barChart.getData().add(bandeco);
+		
+		barChart.setPrefWidth(50);
+		barChart.getStylesheets().add("BarChart.css");
 		barChart.setOnDragDetected(e -> xAxis.setLabel("teste"));
 
 		
@@ -61,7 +77,6 @@ public class ChartTest extends Application {
 		Scene scene = new Scene(layout, 600, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		primaryStage.setResizable(false);
 	}
 	
 }

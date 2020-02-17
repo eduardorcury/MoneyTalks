@@ -1,0 +1,97 @@
+.stacked-bar-chart {
+	-fx-background-color: rgb(41, 3, 81);
+	-fx-padding: 20;
+}
+
+.chart-plot-background {
+	-fx-border-color: red;
+	-fx-border-radius: 20;
+	-fx-border-width: 5;
+	-fx-background-radius: 20;
+}
+
+.data0.chart-bar {
+    -fx-background-radius: 5;
+    -fx-border-color: rgb(41, 3, 81);
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+    -fx-min-bar-height: 50;
+    -fx-max-bar-height: 50;
+}
+
+.default-color0.chart-bar { -fx-bar-fill: rgb(255,102,102);} 
+.default-color1.chart-bar { -fx-bar-fill: rgb(255,51,51);}   
+.default-color2.chart-bar { -fx-bar-fill: rgb(255,0,0);}     
+.default-color3.chart-bar { -fx-bar-fill: rgb(204,0,0);}     
+.default-color4.chart-bar { -fx-bar-fill: rgb(153,0,0);}     
+.default-color5.chart-bar { -fx-bar-fill: rgb(51,204,255);}  
+.default-color6.chart-bar { -fx-bar-fill: rgb(51,153,255);}  
+.default-color7.chart-bar { -fx-bar-fill: rgb(0,0,255);}     
+.default-color8.chart-bar { -fx-bar-fill: rgb(0,0,204);}     
+.default-color9.chart-bar { -fx-bar-fill:  rgb(102,0,153);}  
+.default-color10.chart-bar { -fx-bar-fill:  rgb(102,255,102);}
+.default-color11.chart-bar { -fx-bar-fill:  rgb(0,255,51);}   
+.default-color12.chart-bar { -fx-bar-fill:  rgb(0,204,0);}    
+.default-color13.chart-bar { -fx-bar-fill:  rgb(0,153,0);}    
+.default-color14.chart-bar { -fx-bar-fill:  rgb(0,102,0);}    
+.default-color15.chart-bar { -fx-bar-fill:  rgb(255,255,153);}
+.default-color16.chart-bar { -fx-bar-fill:  rgb(255,255,0);}  
+.default-color17.chart-bar { -fx-bar-fill:  rgb(255,204,0);}  
+.default-color18.chart-bar { -fx-bar-fill:  rgb(255,153,0);}  
+.default-color19.chart-bar { -fx-bar-fill:  rgb(255,102,0);}  
+.default-color20.chart-bar { -fx-bar-fill:  rgb(204,204,204);}
+.default-color21.chart-bar { -fx-bar-fill:  rgb(153,153,153);}
+.default-color22.chart-bar { -fx-bar-fill:  rgb(102,102,102);}
+.default-color23.chart-bar { -fx-bar-fill:  rgb(51,51,51);}   
+
+.axis {
+	-fx-tick-length: 100;
+	-fx-minor-tick-length: 20;
+	-fx-tick-label-fill: white;
+	-fx-tick-label-font: 14 "Ubuntu Bold";
+}
+
+.axis-label {
+	-fx-text-fill: white;
+	-fx-font: 20 "Ubuntu Bold";
+}
+
+.chart-legend {
+	-fx-background-color: rgb(8,236, 190);
+	
+}
+
+.chart-legend-item-symbol{
+   -fx-background-radius: 6;
+   -fx-min-width: 30;
+   -fx-max-width: 30;
+   -fx-min-height: 30;
+   -fx-max-height: 30;
+   -fx-border-color: rgb(86, 6, 172);
+   -fx-border-width: 2;
+   -fx-border-radius: 6;
+}
+
+.chart-legend-item {
+	-fx-font: 14 "Ubuntu Bold";
+	-fx-text-fill: blue;
+}
+
+.tick-label {
+	-fx-text-fill: white;
+	-fx-font: 16 "Ubuntu Bold";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

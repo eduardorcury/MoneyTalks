@@ -97,8 +97,15 @@
     -fx-background-color: rgb(255, 0, 255);
 }
 
+.date-picker .text-field {
+	-fx-font: 14px "Ubuntu Bold";
+	-fx-text-fill: white;
+	-fx-alignment: "center";
+}
 
-
+.date-picker .prompt-text {
+	-fx-text-fill: white;
+}
 
 
 

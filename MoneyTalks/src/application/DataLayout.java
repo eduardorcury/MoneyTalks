@@ -27,9 +27,11 @@ public class DataLayout {
 	public Label valueLabel;
 	public Label categoryLabel;
 	public Label calendarLabel;
+	public Label messageLabel;
 	public DatePicker calendar;
 	public Button cancelButton;
 	public Button confirmButton;
+	public Button addDataButton;
 	public Button addNewCategoryButton;
 	public TextField valueInput;
 	public TextField categoryField;
@@ -38,30 +40,31 @@ public class DataLayout {
 	public Separator separator1;
 	public Separator separator2;
 	public ComboBox<String> typeComboBox = new ComboBox<>();
-	
+
 	public Font font = new Font("Ubuntu Bold", 16);
-	
+
 	public static ComboBox<String> categoryComboBox = new ComboBox<>();
 
 	public VBox newData() {
 
-		
 		separator1 = new Separator(Orientation.HORIZONTAL);
 		separator2 = new Separator(Orientation.HORIZONTAL);
 		separator1.setCenterShape(true);
 		separator2.setCenterShape(true);
 		separator1.setPadding(new Insets(0, 0, 0, 0));
-		
+
 		addNewCategoryButton = new Button();
+		addDataButton = new Button("Add new data");
+		//addDataButton.setVisible(false);
 		categoryLabel = new Label("Category:");
 		valueLabel = new Label("Amount:");
 		calendarLabel = new Label("Day:");
+		messageLabel = new Label("Enter necessary data");
 		valueInput = new TextField();
 		valueHBox = new HBox(10);
 		categoryHBox = new HBox(10);
 		calendarHBox = new HBox(10);
 		completeLayout = new VBox(5);
-		//completeLayout.setPrefColumns(1);
 		calendar = new DatePicker();
 
 		valueInput.setPromptText("Enter value");
@@ -73,10 +76,12 @@ public class DataLayout {
 		valueHBox.setAlignment(Pos.CENTER);
 		categoryHBox.setAlignment(Pos.CENTER);
 		calendarHBox.setAlignment(Pos.CENTER);
+		completeLayout.setAlignment(Pos.CENTER);
 		addNewCategoryButton.setId("add-button");
-		
+
 		typeComboBox.setId("combo-box1");
 		categoryComboBox.setId("combo-box2");
+		messageLabel.setId("message-label");
 
 		typeComboBox.setPrefWidth(80);
 		typeComboBox.getItems().addAll("Expense", "Income");
@@ -87,19 +92,25 @@ public class DataLayout {
 		valueHBox.getChildren().addAll(valueLabel, valueInput, typeComboBox);
 		categoryHBox.getChildren().addAll(categoryLabel, getCategoryComboBox(), addNewCategoryButton);
 		calendarHBox.getChildren().addAll(calendarLabel, calendar);
-		completeLayout.getChildren().addAll(valueHBox, separator1, categoryHBox, separator2, calendarHBox);
+		completeLayout.getChildren().addAll(valueHBox, separator1, categoryHBox, separator2, calendarHBox,
+				messageLabel, addDataButton);
+
+		
+		valueInput.setOnInputMethodTextChanged(event -> addDataMethod());
+		calendar.setOnInputMethodTextChanged(event -> addDataMethod());
+		typeComboBox.setOnInputMethodTextChanged(event -> addDataMethod());
+		categoryComboBox.setOnInputMethodTextChanged(event -> addDataMethod());
+		
 		completeLayout.setPadding(new Insets(10, 10, 10, 10));
-		//completeLayout.setVgap(2);
 
 		valueLabel.setFont(font);
 		categoryLabel.setFont(font);
 		calendarLabel.setFont(font);
-		valueInput.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
-		calendar.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
-		categoryComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
-		typeComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";" + "-fx-text-fill: white");
-		
-		
+		valueInput.setStyle("-fx-font: 16px \"Ubuntu Bold\";" + "-fx-text-fill: white");
+		calendar.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
+		categoryComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
+		typeComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
+
 		completeLayout.getStylesheets().add("DataLayout.css");
 		completeLayout.getStyleClass().add("vbox");
 		categoryHBox.getStyleClass().add("hbox");
@@ -110,12 +121,21 @@ public class DataLayout {
 
 	}
 
+	public void addDataMethod() {
+		
+		if (valueInput.getText() != null) {
+
+			addDataButton.setVisible(true);
+			System.out.println("teste");
+
+		}
+	}
+
 	public ComboBox<String> getCategoryComboBox() {
 
 		Button addCategory = new Button("Add category");
 		addCategory.setPrefWidth(170);
 
-		categoryComboBox.setOnShowing(event -> categoryComboBox.setPromptText(""));
 		categoryComboBox.setOnHiding(event -> categoryComboBox.setPromptText("Select category"));
 		categoryComboBox.setPlaceholder(addCategory);
 		categoryComboBox.getPlaceholder().setOnMousePressed(event -> AddNewCategory.addNewCategoryWindow());
@@ -146,5 +166,4 @@ public class DataLayout {
 		categoryComboBox.getItems().add(categoryName);
 
 	}
-
 }
