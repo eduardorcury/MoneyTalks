@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.scene.paint.Color;
 
 public class Category {
@@ -7,6 +9,7 @@ public class Category {
 	private String categoryName;
 	private String categoryType;
 	private Color categoryColor;
+	public static ArrayList<Category> categories = new ArrayList<Category>();
 	//color array with the sequence in colorButtons.css
 	public Color[] colors = {
 			Color.rgb(255,102,102),
@@ -43,10 +46,9 @@ public class Category {
 		this.categoryColor = Color.BLUE;
 	}
 
-	public Category(String categoryName, String categoryType, Color categoryColor) {
+	public Category(String categoryName, Color categoryColor) {
 
 		this.categoryName = categoryName;
-		this.categoryType = categoryType;
 		this.categoryColor = categoryColor;
 
 	}
@@ -80,5 +82,10 @@ public class Category {
 		Integer buttonId = Integer.parseInt(buttonStyle.substring(7));
 		categoryColor = colors[buttonId - 1];
 	}
-
+	
+	public void categoriesArrayList() {
+		
+		categories.add(this);
+		System.out.println(categories.size());
+	}
 }

@@ -21,7 +21,6 @@ public class AddNewCategory extends DataLayout {
 	private static Label categoryLabel;
 	private static Button cancelButton;
 	private static Button confirmButton;
-	private static Category newCategory;
 	private static TilePane buttonsLayout; 
 	private static TextField categoryField;
 	private static CategoryColor colorButtons; 
@@ -33,7 +32,6 @@ public class AddNewCategory extends DataLayout {
 		hbox2 = new HBox(10);
 		layout = new VBox(20);
 		scene = new Scene(layout);
-		newCategory = new Category();
 		categoryField = new TextField();
 		addNewCategoryStage = new Stage();
 		colorButtons = new CategoryColor();
@@ -71,12 +69,12 @@ public class AddNewCategory extends DataLayout {
 	
 	public static Category confirm() {
 		
+		Category newCategory = new Category(categoryField.getText(), colorButtons.buttonColor);
 		setCategoryComboBox(categoryField.getText());
-		newCategory.setCategoryName(categoryField.getText());
-		newCategory.setCategoryColor(colorButtons.buttonColor);
+		newCategory.categoriesArrayList();
 		addNewCategoryStage.close();
-		System.out.println(categoryField.getText() + newCategory.getCategoryColor());
-		
+
 		return newCategory;
+		
 	}
 }

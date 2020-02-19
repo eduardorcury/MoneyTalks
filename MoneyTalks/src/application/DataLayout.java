@@ -1,5 +1,6 @@
 package application;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javafx.geometry.Insets;
@@ -13,6 +14,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -47,6 +49,7 @@ public class DataLayout {
 
 	public VBox newData() {
 
+		VBox finishedLayout = new VBox(10);
 		separator1 = new Separator(Orientation.HORIZONTAL);
 		separator2 = new Separator(Orientation.HORIZONTAL);
 		separator1.setCenterShape(true);
@@ -55,7 +58,7 @@ public class DataLayout {
 
 		addNewCategoryButton = new Button();
 		addDataButton = new Button("Add new data");
-		//addDataButton.setVisible(false);
+		// addDataButton.setVisible(false);
 		categoryLabel = new Label("Category:");
 		valueLabel = new Label("Amount:");
 		calendarLabel = new Label("Day:");
@@ -93,16 +96,21 @@ public class DataLayout {
 		categoryHBox.getChildren().addAll(categoryLabel, getCategoryComboBox(), addNewCategoryButton);
 		calendarHBox.getChildren().addAll(calendarLabel, calendar);
 		completeLayout.getChildren().addAll(valueHBox, separator1, categoryHBox, separator2, calendarHBox,
-				 addDataButton);
+				addDataButton);
 
-		// addDataButton.setOnAction(event -> new Data(Float.parseFloat(valueInput.getText()),
-		//						categoryComboBox.getValue(), calendar.getValue()));
-		
+		// Add new Data with amount, category and date
+		addDataButton.setOnAction(event -> {
+			Data newData = new Data(Float.parseFloat(valueInput.getText()), categoryComboBox.getValue(),
+					calendar.getValue());
+			contentLogs.getItems().add(newData);
+			
+		});
+
 		valueInput.setOnInputMethodTextChanged(event -> addDataMethod());
 		calendar.setOnInputMethodTextChanged(event -> addDataMethod());
 		typeComboBox.setOnInputMethodTextChanged(event -> addDataMethod());
 		categoryComboBox.setOnInputMethodTextChanged(event -> addDataMethod());
-		
+
 		completeLayout.setPadding(new Insets(10, 10, 10, 10));
 
 		valueLabel.setFont(font);
@@ -119,7 +127,8 @@ public class DataLayout {
 		valueHBox.getStyleClass().add("hbox");
 		calendarHBox.getStyleClass().add("hbox");
 
-		return completeLayout;
+		finishedLayout.getChildren().addAll(completeLayout, getContentLogs());
+		return finishedLayout;
 
 	}
 
@@ -150,10 +159,15 @@ public class DataLayout {
 	public TableView<Data> getContentLogs() {
 
 		contentLogs = new TableView<Data>();
-		TableColumn<Data, Double> amountColumn = new TableColumn<>("Amount");
-		TableColumn<Data, String> categoryColumn = new TableColumn<>("Category");
-		TableColumn<Data, Date> dateColumn = new TableColumn<>("Date");
+		TableColumn<Data, Float> amountColumn = new TableColumn<>("Amount");
+		TableColumn<Data, Category> categoryColumn = new TableColumn<>("Category");
+		TableColumn<Data, LocalDate> dateColumn = new TableColumn<>("Date");
 
+		amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+		categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+		dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+		
 		amountColumn.setMinWidth(100);
 		categoryColumn.setMinWidth(100);
 		dateColumn.setMinWidth(100);
