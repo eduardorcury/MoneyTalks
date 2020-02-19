@@ -4,21 +4,23 @@ import java.util.Date;
 
 public class Data {
 	
-	Double amount;
+	Float amount;
 	Category category;
 	Date date;
 	
-	public Data(Double amount, Category category, Date date) {
+	public Data(Float amount, Category category, Date date) {
 		
 		this.amount = amount;
 		this.category = category;
 		
 	}
 	
-	public Double getAmount() {
+	public Data() {}
+
+	public Float getAmount() {
 		return amount;
 	}
-	public void setAmount(Double amount) {
+	public void setAmount(Float amount) {
 		this.amount = amount;
 	}
 	public Category getCategory() {

@@ -93,8 +93,10 @@ public class DataLayout {
 		categoryHBox.getChildren().addAll(categoryLabel, getCategoryComboBox(), addNewCategoryButton);
 		calendarHBox.getChildren().addAll(calendarLabel, calendar);
 		completeLayout.getChildren().addAll(valueHBox, separator1, categoryHBox, separator2, calendarHBox,
-				messageLabel, addDataButton);
+				 addDataButton);
 
+		// addDataButton.setOnAction(event -> new Data(Float.parseFloat(valueInput.getText()),
+		//						categoryComboBox.getValue(), calendar.getValue()));
 		
 		valueInput.setOnInputMethodTextChanged(event -> addDataMethod());
 		calendar.setOnInputMethodTextChanged(event -> addDataMethod());
@@ -122,7 +124,7 @@ public class DataLayout {
 	}
 
 	public void addDataMethod() {
-		
+
 		if (valueInput.getText() != null) {
 
 			addDataButton.setVisible(true);

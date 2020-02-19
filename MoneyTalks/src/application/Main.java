@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	Button teste;
 	Stage window;
 	Scene scene;
 	applicationTrees months = new applicationTrees();
