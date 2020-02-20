@@ -103,6 +103,7 @@ public class DataLayout {
 			Data newData = new Data(Float.parseFloat(valueInput.getText()), categoryComboBox.getValue(),
 					calendar.getValue());
 			contentLogs.getItems().add(newData);
+			valueInput.clear();
 			
 		});
 
@@ -160,8 +161,8 @@ public class DataLayout {
 
 		contentLogs = new TableView<Data>();
 		TableColumn<Data, Float> amountColumn = new TableColumn<>("Amount");
-		TableColumn<Data, Category> categoryColumn = new TableColumn<>("Category");
-		TableColumn<Data, LocalDate> dateColumn = new TableColumn<>("Date");
+		TableColumn<Data, String> categoryColumn = new TableColumn<>("Category");
+		TableColumn<Data, String> dateColumn = new TableColumn<>("Date");
 
 		amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
 		categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));

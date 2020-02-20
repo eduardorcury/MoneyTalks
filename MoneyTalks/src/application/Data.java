@@ -1,6 +1,11 @@
 package application;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class Data extends Category {
 	
@@ -31,6 +36,23 @@ public class Data extends Category {
 		
 	}
 	
+	public LocalDate getDate() {
+		//format localdate style
+		return date;
+	}
+	
+	public ObservableValue<String> dateProperty() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu");
+		String text = date.format(formatter);
+		LocalDate newDate = LocalDate.parse(text, formatter);
+		ObservableValue<String> observableLocalDate = new SimpleStringProperty(newDate.toString());
+		return observableLocalDate;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 	public Data() {}
 
 	public Float getAmount() {
@@ -38,6 +60,10 @@ public class Data extends Category {
 	}
 	public void setAmount(Float amount) {
 		this.amount = amount;
+	}
+	public ObservableValue<String> categoryProperty() {
+		ObservableValue<String> observableCategoryName = new SimpleStringProperty(category.getCategoryName());
+		return observableCategoryName;
 	}
 	public Category getCategory() {
 		return category;

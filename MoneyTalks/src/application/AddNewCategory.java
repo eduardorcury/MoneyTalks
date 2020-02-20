@@ -73,7 +73,8 @@ public class AddNewCategory extends DataLayout {
 		setCategoryComboBox(categoryField.getText());
 		newCategory.categoriesArrayList();
 		addNewCategoryStage.close();
-
+		categoryComboBox.setValue(newCategory.getCategoryName());
+		
 		return newCategory;
 		
 	}
