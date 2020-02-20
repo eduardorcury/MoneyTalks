@@ -160,6 +160,7 @@ public class DataLayout {
 	public TableView<Data> getContentLogs() {
 
 		contentLogs = new TableView<Data>();
+		contentLogs.setId("table-view");
 		TableColumn<Data, Float> amountColumn = new TableColumn<>("Amount");
 		TableColumn<Data, String> categoryColumn = new TableColumn<>("Category");
 		TableColumn<Data, String> dateColumn = new TableColumn<>("Date");
@@ -168,12 +169,12 @@ public class DataLayout {
 		categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
 		dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-		
-		amountColumn.setMinWidth(100);
-		categoryColumn.setMinWidth(100);
-		dateColumn.setMinWidth(100);
+		contentLogs.setPrefSize(330, 470);
+		amountColumn.setMinWidth(107);
+		categoryColumn.setMinWidth(107);
+		dateColumn.setMinWidth(107);
 		contentLogs.getColumns().addAll(amountColumn, categoryColumn, dateColumn);
-
+		contentLogs.getStylesheets().add("DataLayout.css");
 		return contentLogs;
 
 	}

@@ -5,19 +5,22 @@ import java.time.format.DateTimeFormatter;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.util.converter.LocalDateStringConverter;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Data extends Category {
 	
 	private Float amount;
 	private Category category;
 	private LocalDate date;
+	private ObservableList<Data> dataList = FXCollections.observableArrayList();
 	
 	public Data(Float amount, Category category, LocalDate date) {
 		
 		this.amount = amount;
 		this.category = category;
 		this.date = date;
+		dataList.add(this);
 		
 	}
 	
@@ -32,8 +35,7 @@ public class Data extends Category {
 				System.out.println(categories.get(i).getCategoryName());
 			}
 		}
-		
-		
+		dataList.add(this);
 	}
 	
 	public LocalDate getDate() {

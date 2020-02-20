@@ -86,6 +86,26 @@
 	-fx-text-fill: rgba(86, 6, 172, 0.5);
 }
 
-
-
-
+#table-view {
+	-fx-font: 16px "Ubuntu Bold";
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 3;
+}
+#table-view .column-header {
+	-fx-background-color: rgb(86, 6, 172);
+}
+#table-view .table-column {
+	-fx-alignment: CENTER;
+}
+#table-view .table-cell {
+	-fx-text-fill: rgb(86, 6, 172);
+}
+#table-view .table-row-cell {
+	-fx-text-fill: white;
+}
+#table-view .column-header .label {
+    -fx-text-fill: white;
+}
+#table-view /*> column-header-background > nested-column-header >*/ .arrow {
+	-fx-background-color: white;
+}
