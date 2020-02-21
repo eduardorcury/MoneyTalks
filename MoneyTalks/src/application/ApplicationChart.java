@@ -8,26 +8,21 @@ import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 
 public class ApplicationChart extends Data {
-	
-	
-	public ObservableList<XYChart.Series<Number, String>> list = FXCollections.observableArrayList();
+
 	private NumberAxis xAxis;
 	private CategoryAxis yAxis;
-	private XYChart.Series<Number, String> spendingsSeries;
 	private StackedBarChart<Number, String> spendingsChart;
-	
+	private XYChart.Series<Number, String> spendingsSeries = new XYChart.Series<>();
+	private ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
+
 	public void createChart() {
-		
+
 		xAxis = new NumberAxis();
 		yAxis = new CategoryAxis();
-		
+
+		spendingsSeries.getData().addAll(chartData);
 		spendingsChart = new StackedBarChart<>(xAxis, yAxis);
-		list.add(spendingsSeries);
-		spendingsChart.setData(list);
+		chartSeries.add(spendingsSeries);
+		spendingsChart.setData(chartSeries);
 	}
-
-	public void addChartData(Float amount, Category category) {
-		spendingsSeries.getData().add(new XYChart.Data<Number, String>(amount, category.toString()));
-	}
-
 }

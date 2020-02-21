@@ -7,13 +7,15 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 
 public class Data extends Category {
 	
 	private Float amount;
 	private Category category;
 	private LocalDate date;
-	private ObservableList<Data> dataList = FXCollections.observableArrayList();
+	public ObservableList<Data> dataList = FXCollections.observableArrayList();
+	public ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
 	
 	public Data(Float amount, Category category, LocalDate date) {
 		
@@ -21,6 +23,9 @@ public class Data extends Category {
 		this.category = category;
 		this.date = date;
 		dataList.add(this);
+		addChartData();
+		System.out.println(dataList);
+		System.out.println(chartData);
 		
 	}
 	
@@ -36,6 +41,9 @@ public class Data extends Category {
 			}
 		}
 		dataList.add(this);
+		addChartData();
+		System.out.println(dataList);
+		System.out.println(chartData);
 	}
 	
 	public LocalDate getDate() {
@@ -72,6 +80,14 @@ public class Data extends Category {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	public void addChartData() {
+
+		for (int i = 0; i < dataList.size(); i++) {
+			chartData.add(
+					new XYChart.Data<>(dataList.get(i).getAmount(), dataList.get(i).getCategory().getCategoryName()));
+		}
 	}
 	
 }
