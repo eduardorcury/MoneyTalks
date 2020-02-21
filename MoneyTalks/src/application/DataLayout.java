@@ -104,7 +104,6 @@ public class DataLayout {
 					calendar.getValue());
 			contentLogs.getItems().add(newData);
 			valueInput.clear();
-			
 		});
 
 		valueInput.setOnInputMethodTextChanged(event -> addDataMethod());

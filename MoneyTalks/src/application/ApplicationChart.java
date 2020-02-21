@@ -1,6 +1,7 @@
 package application;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -11,11 +12,10 @@ public class ApplicationChart extends Data {
 
 	private NumberAxis xAxis;
 	private CategoryAxis yAxis;
-	private StackedBarChart<Number, String> spendingsChart;
-	private XYChart.Series<Number, String> spendingsSeries = new XYChart.Series<>();
+	private static StackedBarChart<Number, String> spendingsChart;
 	private static ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
 
-	public void createChart() {
+	public StackedBarChart<Number, String> createChart() {
 
 		xAxis = new NumberAxis();
 		yAxis = new CategoryAxis();
@@ -23,6 +23,9 @@ public class ApplicationChart extends Data {
 		spendingsSeries.getData().addAll(chartData);
 		spendingsChart = new StackedBarChart<>(xAxis, yAxis);
 		chartSeries.add(spendingsSeries);
-		spendingsChart.setData(chartSeries);
+		spendingsChart.getData().add(spendingsSeries);
+		
+		
+		return spendingsChart;
 	}
 }

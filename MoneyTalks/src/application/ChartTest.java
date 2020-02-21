@@ -88,8 +88,6 @@ public class ChartTest extends Application {
 		barChart.setOnMouseEntered(event -> System.out.println("teste"));
 
 		label = new Label("teste");
-		ifood.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, 
-		event -> System.out.println("teste"));
 		
 	}
 

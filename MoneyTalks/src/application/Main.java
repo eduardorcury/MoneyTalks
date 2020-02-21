@@ -16,6 +16,7 @@ public class Main extends Application {
 	TreeView<String> monthTree = months.getMonths();
 	applicationMenu menu = new applicationMenu();
 	DataLayout dataLayout = new DataLayout();
+	static ApplicationChart chart = new ApplicationChart();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -30,13 +31,7 @@ public class Main extends Application {
 		BorderPane layout = new BorderPane();
 		layout.setTop(menu.menuItems());
 		layout.setRight(dataLayout.newData());
-
-		Button teste = new Button();
-		teste.setStyle("-fx-background-image: url(\"../icons/add-icon2.png\");" + "-fx-background-radius: 50;"
-				+ "-fx-min-width: 300;" + "-fx-min-height: 300;" + "-fx-max-width: 300;" + "-fx-max-height: 300;"
-		+ "-fx-background-color: rgb(86, 6, 172);");
-		layout.setCenter(teste);
-		
+		layout.setCenter(chart.createChart());
 		
 		scene = new Scene(layout, 400, 300);
 		window.setScene(scene);
