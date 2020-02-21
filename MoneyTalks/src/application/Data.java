@@ -14,8 +14,8 @@ public class Data extends Category {
 	private Float amount;
 	private Category category;
 	private LocalDate date;
-	public ObservableList<Data> dataList = FXCollections.observableArrayList();
-	public ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
+	public static ObservableList<Data> dataList = FXCollections.observableArrayList();
+	public static ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
 	
 	public Data(Float amount, Category category, LocalDate date) {
 		
@@ -44,6 +44,7 @@ public class Data extends Category {
 		addChartData();
 		System.out.println(dataList);
 		System.out.println(chartData);
+		System.out.println(dataList.size());
 	}
 	
 	public LocalDate getDate() {
@@ -83,11 +84,8 @@ public class Data extends Category {
 	}
 	
 	public void addChartData() {
-
-		for (int i = 0; i < dataList.size(); i++) {
-			chartData.add(
-					new XYChart.Data<>(dataList.get(i).getAmount(), dataList.get(i).getCategory().getCategoryName()));
-		}
+		//add this Data object to Observable List 
+		chartData.add(new XYChart.Data<>(this.getAmount(), this.getCategory().getCategoryName()));
 	}
 	
 }

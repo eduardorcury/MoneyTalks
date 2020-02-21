@@ -13,7 +13,7 @@ public class ApplicationChart extends Data {
 	private CategoryAxis yAxis;
 	private StackedBarChart<Number, String> spendingsChart;
 	private XYChart.Series<Number, String> spendingsSeries = new XYChart.Series<>();
-	private ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
+	private static ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
 
 	public void createChart() {
 
