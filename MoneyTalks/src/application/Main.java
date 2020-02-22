@@ -16,7 +16,7 @@ public class Main extends Application {
 	TreeView<String> monthTree = months.getMonths();
 	applicationMenu menu = new applicationMenu();
 	DataLayout dataLayout = new DataLayout();
-	static ApplicationChart chart = new ApplicationChart();
+	Data data = new Data();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -31,7 +31,7 @@ public class Main extends Application {
 		BorderPane layout = new BorderPane();
 		layout.setTop(menu.menuItems());
 		layout.setRight(dataLayout.newData());
-		layout.setCenter(chart.createChart());
+		layout.setCenter(data.createChart());
 		
 		scene = new Scene(layout, 400, 300);
 		window.setScene(scene);

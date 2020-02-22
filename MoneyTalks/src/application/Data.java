@@ -8,6 +8,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 
 public class Data extends Category {
@@ -15,9 +18,15 @@ public class Data extends Category {
 	private Float amount;
 	private Category category;
 	private LocalDate date;
-	public static ObservableList<Data> dataList = FXCollections.observableArrayList();
-	public static ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
-	public static XYChart.Series<Number, String> spendingsSeries = new XYChart.Series<>();
+	private NumberAxis xAxis;
+	private CategoryAxis yAxis;
+	private static StackedBarChart<Number, String> spendingsChart;
+	private static XYChart.Series<Number, String> spendingsSeries = new XYChart.Series<>();
+	private static ObservableList<Data> dataList = FXCollections.observableArrayList();
+	private static ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
+	private static ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
+
+	
 
 	public Data(Float amount, Category category, LocalDate date) {
 
@@ -40,7 +49,7 @@ public class Data extends Category {
 			}
 		}
 		dataList.add(this);
-		addChartData();
+		spendingsChart.getData().add(addChartData());
 	}
 
 	public LocalDate getDate() {
@@ -84,10 +93,22 @@ public class Data extends Category {
 		this.category = category;
 	}
 
-	public void addChartData() {
+	public XYChart.Series<Number, String> addChartData() {
 		// add this Data object to Observable List
-		spendingsSeries.getData()
+		XYChart.Series<Number, String> dataSeries = new XYChart.Series<>();
+		dataSeries.getData()
 				.addAll(new XYChart.Data<Number, String>(this.getAmount(), this.getCategory().getCategoryName()));
-		spendingsSeries.setName(this.getCategory().getCategoryName());
+		dataSeries.setName(this.getCategory().getCategoryName());
+		chartSeries.add(dataSeries);
+		return dataSeries;
+	}
+	
+	public StackedBarChart<Number, String> createChart() {
+
+		xAxis = new NumberAxis();
+		yAxis = new CategoryAxis();
+		
+		spendingsChart = new StackedBarChart<>(xAxis, yAxis);
+		return spendingsChart;
 	}
 }
