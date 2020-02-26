@@ -94,6 +94,9 @@
 	-fx-text-fill: blue;
 }
 
+.chart-bar {
+	-fx-bar-fill: red;
+}
 
 
 

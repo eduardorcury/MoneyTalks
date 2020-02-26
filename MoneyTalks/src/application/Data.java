@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedBarChart;
@@ -97,6 +97,10 @@ public class Data extends Category {
 		dataSeries.getData().add(newData);
 		chartSeries.add(dataSeries);
 		chartData.add(newData);
+		Node dataNode = dataSeries.getNode();
+		spendingsChart.setStyle("-fx-bar-fill: rgb(" + this.getCategory().getCategoryColor().getRed()*255 + ","
+				+ this.getCategory().getCategoryColor().getGreen()*255 + ","
+				+ this.getCategory().getCategoryColor().getBlue()*255 + ");");
 		return dataSeries;
 	}
 	
