@@ -8,15 +8,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Group;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class Data extends Category {
 
@@ -107,13 +109,7 @@ public class Data extends Category {
 				  changeColor(newNode);
 			  }
 		});
-		
-		StackPane node = new StackPane();
-		Label label = new Label("teste");
-		Group group = new Group(label);
-		node.getChildren().add(group);
-		
-		newData.setNode(node);
+		newData.setNode(new OnDataHover(this.getAmount()));
 		
 		return dataSeries;
 	}
@@ -134,13 +130,24 @@ public class Data extends Category {
 		return spendingsChart;
 	}
 	
-	public void onDataHover(Node newNode, XYChart.Data<Number, String> newData) {
-		
-		
-		newNode.setOnMouseClicked(event -> {
-			System.out.println("teste");
+	class OnDataHover extends StackPane {
+		OnDataHover(Number amount) {
+			VBox vbox = new VBox(10);
+			Label label = new Label("$" + amount.toString());
+			vbox.getChildren().addAll(label);
+			vbox.setAlignment(Pos.CENTER);
+			vbox.getStylesheets().add("BarChart.css");
+			vbox.setId("#chart-box");
 			
-		});
+			setOnMouseEntered(event -> {
+				getChildren().setAll(vbox);
+				setCursor(Cursor.HAND);
+			});
+			
+			setOnMouseExited(event -> {
+				getChildren().clear();
+			});
+		}
 	}
 	
 }
