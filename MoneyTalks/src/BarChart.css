@@ -23,7 +23,7 @@
 }
 
 .data0.chart-bar:hover {
-	-fx-background-color: rgb(86, 6, 172);
+	-fx-background-color: white;
 	-fx-border-width: 5;
 	
 }

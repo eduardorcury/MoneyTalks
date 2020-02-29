@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -94,16 +95,25 @@ public class Data extends Category {
 		// add this Data object to Observable List
 		XYChart.Data<Number, String> newData = new XYChart.Data<Number, String>(this.getAmount(), this.getCategory().getCategoryName());
 		XYChart.Series<Number, String> dataSeries = new XYChart.Series<Number, String>();
+		
 		dataSeries.getData().add(newData);
 		chartSeries.add(dataSeries);
 		chartData.add(newData);
-		Node dataNode = dataSeries.getNode();
-		spendingsChart.setStyle("-fx-bar-fill: rgb(" + this.getCategory().getCategoryColor().getRed()*255 + ","
-				+ this.getCategory().getCategoryColor().getGreen()*255 + ","
-				+ this.getCategory().getCategoryColor().getBlue()*255 + ");");
+		newData.nodeProperty().addListener(new ChangeListener<Node>() {
+			  @Override public void changed(ObservableValue<? extends Node> ov, Node oldNode, Node newNode) {
+				  changeColor(newNode);
+			  }
+		});
+	
 		return dataSeries;
 	}
 	
+	public void changeColor(Node newNode) {
+		newNode.setStyle("-fx-bar-fill: rgb(" + this.getCategory().getCategoryColor().getRed()*255 + ","
+				+ this.getCategory().getCategoryColor().getGreen()*255 + ","
+				+ this.getCategory().getCategoryColor().getBlue()*255 + ");");
+	}
+
 	public StackedBarChart<Number, String> createChart() {
 
 		xAxis = new NumberAxis();
@@ -113,4 +123,5 @@ public class Data extends Category {
 		spendingsChart.getStylesheets().add("BarChart.css");
 		return spendingsChart;
 	}
+	
 }
