@@ -8,11 +8,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 
 public class Data extends Category {
 
@@ -43,7 +47,6 @@ public class Data extends Category {
 		for (int i = 0; i < categories.size(); i++) {
 			if (comboBoxValue.equals(categories.get(i).getCategoryName())) {
 				this.category = categories.get(i);
-				System.out.println(categories.get(i).getCategoryName());
 			}
 		}
 		dataList.add(this);
@@ -104,7 +107,14 @@ public class Data extends Category {
 				  changeColor(newNode);
 			  }
 		});
-	
+		
+		StackPane node = new StackPane();
+		Label label = new Label("teste");
+		Group group = new Group(label);
+		node.getChildren().add(group);
+		
+		newData.setNode(node);
+		
 		return dataSeries;
 	}
 	
@@ -122,6 +132,15 @@ public class Data extends Category {
 		spendingsChart = new StackedBarChart<>(xAxis, yAxis);
 		spendingsChart.getStylesheets().add("BarChart.css");
 		return spendingsChart;
+	}
+	
+	public void onDataHover(Node newNode, XYChart.Data<Number, String> newData) {
+		
+		
+		newNode.setOnMouseClicked(event -> {
+			System.out.println("teste");
+			
+		});
 	}
 	
 }
