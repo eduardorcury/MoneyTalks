@@ -14,15 +14,13 @@
 	-fx-border-radius: 5;
 }
 
-.toggle-button:hover {
+.toggle-button:hover,
+.toggle-button:pressed,
+.toggle-button:selected {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 3;
 	-fx-opacity: 0.5;
 }
-
-.toggle-button:pressed {
-	-fx-border-color: #0000cd;
-	-fx-border-width: 3;
-}
-
 
 #button-1 {-fx-background-color: rgb(255,102,102);}
 #button-2 {-fx-background-color: rgb(255,51,51);}

@@ -2,6 +2,7 @@ package application;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,20 +41,21 @@ public class AddNewCategory extends DataLayout {
 		categoryLabel = new Label("Enter category name: ");
 		buttonsLayout = colorButtons.colorButtonsLayout();
 		
-		hbox1.setAlignment(Pos.TOP_CENTER);
-		hbox2.setAlignment(Pos.BOTTOM_CENTER);
+		hbox1.setAlignment(Pos.CENTER);
+		hbox2.setAlignment(Pos.CENTER);
 		buttonsLayout.setAlignment(Pos.CENTER);
 		categoryLabel.setAlignment(Pos.CENTER_RIGHT);
 		categoryField.setAlignment(Pos.CENTER);
 		addNewCategoryStage.initModality(Modality.APPLICATION_MODAL);
 		categoryField.setPromptText("Category name");
-		confirmButton.setDefaultButton(true);
+		confirmButton.setCursor(Cursor.HAND);
+		cancelButton.setCursor(Cursor.HAND);
 		
 		hbox1.getChildren().addAll(categoryLabel, categoryField);
 		hbox2.getChildren().addAll(confirmButton, cancelButton);
 		layout.setPadding(new Insets(30, 30, 30, 30));
 		layout.getChildren().addAll(hbox1, buttonsLayout, hbox2);
-
+		
 		buttonsLayout.setStyle("-fx-border-color: black;" + "-fx-border-width: 5");
 		
 		scene.getStylesheets().add("AddNewCategoryWindow.css");

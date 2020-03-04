@@ -126,7 +126,7 @@ public class Data extends Category {
 		yAxis = new CategoryAxis();
 		
 		spendingsChart = new StackedBarChart<>(xAxis, yAxis);
-		spendingsChart.getStylesheets().add("BarChart.css");
+		spendingsChart.getStylesheets().add("/BarChart.css");
 		return spendingsChart;
 	}
 	
