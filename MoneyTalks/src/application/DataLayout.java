@@ -54,7 +54,7 @@ public class DataLayout {
 
 	public VBox newData() {
 
-		VBox finishedLayout = new VBox(10);
+		VBox finishedLayout = new VBox(5);
 		separator1 = new Separator(Orientation.HORIZONTAL);
 		separator2 = new Separator(Orientation.HORIZONTAL);
 		separator3 = new Separator(Orientation.HORIZONTAL);
@@ -66,7 +66,9 @@ public class DataLayout {
 		addDataButton = new Button("Add new data");
 		addDataButton.setDisable(true);
 		editDataButton = new Button("Edit");
+		editDataButton.setDisable(true);
 		deleteDataButton = new Button("Delete");
+		deleteDataButton.setDisable(true);
 		categoryLabel = new Label("Category:");
 		valueLabel = new Label("Amount:");
 		calendarLabel = new Label("Day:");
@@ -77,9 +79,10 @@ public class DataLayout {
 		calendarHBox = new HBox(10);
 		completeLayout = new VBox(5);
 		calendar = new DatePicker();
-		logsHBox = new HBox(10);
+		logsHBox = new HBox(5);
 		logsHBox.getChildren().addAll(editDataButton, deleteDataButton);
 		logsHBox.setAlignment(Pos.CENTER);
+		logsHBox.setPadding(new Insets(0, 5, 5, 5));
 		
 		valueInput.setPromptText("Enter value");
 		valueHBox.setPadding(new Insets(0, 0, 0, 10));
@@ -154,7 +157,6 @@ public class DataLayout {
 			}
 		});
 		
-		
 		completeLayout.setPadding(new Insets(10, 10, 10, 10));
 
 		valueLabel.setFont(font);
@@ -164,7 +166,7 @@ public class DataLayout {
 		calendar.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
 		categoryComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
 
-		completeLayout.getStylesheets().add("DataLayout.css");
+		finishedLayout.getStylesheets().add("DataLayout.css");
 		completeLayout.getStyleClass().add("vbox");
 		categoryHBox.getStyleClass().add("hbox");
 		valueHBox.getStyleClass().add("hbox");
@@ -207,6 +209,11 @@ public class DataLayout {
 		dateColumn.setMinWidth(107);
 		contentLogs.getColumns().addAll(amountColumn, categoryColumn, dateColumn);
 		contentLogs.getStylesheets().add("DataLayout.css");
+		
+		contentLogs.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			editDataButton.setDisable(false);
+			deleteDataButton.setDisable(false);
+		});
 		return contentLogs;
 
 	}

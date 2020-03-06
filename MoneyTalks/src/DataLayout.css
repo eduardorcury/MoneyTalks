@@ -38,8 +38,15 @@
 	-fx-min-width: 70;
 	-fx-max-width: 70;
 	-fx-background-color: white;
-	-fx-font: 12px "Ubuntu Bold";
+	-fx-font: 14px "Ubuntu Bold";
 	-fx-text-fill: rgb(86, 6, 172);
+}
+
+#edit-data-button:hover,
+#delete-data-button:hover {
+	-fx-background-color: rgb(86, 6, 172);
+	-fx-text-fill: white;
+	-fx-cursor: HAND;
 }
 
 #add-data-button {
