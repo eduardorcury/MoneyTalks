@@ -108,13 +108,13 @@ public class DataLayout {
 		});
 
 		//check if necessary data is informed
+		//TODO: put this in a new method?
 		checkData.addListener((ListChangeListener<Boolean>) c -> {
 			if (checkData.get(0) == true && checkData.get(1) == true && checkData.get(2) == true) {
 				addDataButton.setDisable(false);
 			}
 			else {
 				addDataButton.setDisable(true);
-				System.out.println("disabled");
 			}
 		});
 
@@ -130,7 +130,7 @@ public class DataLayout {
 		valueInput.textProperty().addListener(( observable, oldValue, newValue ) -> {
 			if (!valueInput.getText().isBlank()) {
 				try {
-					Integer.parseInt(valueInput.getText());
+					Float.parseFloat(valueInput.getText());
 					checkData.set(2, true);
 				}
 				catch (NumberFormatException e) {
