@@ -14,6 +14,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,6 +26,7 @@ public class DataLayout {
 	public HBox valueHBox;
 	public HBox categoryHBox;
 	public HBox calendarHBox;
+	public HBox logsHBox;
 	public VBox completeLayout;
 	public Label valueLabel;
 	public Label categoryLabel;
@@ -35,13 +37,15 @@ public class DataLayout {
 	public Button confirmButton;
 	public Button addDataButton;
 	public Button addNewCategoryButton;
+	public Button editDataButton;
+	public Button deleteDataButton;
 	public TextField valueInput;
 	public TextField categoryField;
 	public Stage addNewCategoryStage;
 	public TableView<Data> contentLogs;
 	public Separator separator1;
 	public Separator separator2;
-	public ComboBox<String> typeComboBox = new ComboBox<>();
+	public Separator separator3;
 
 	public Font font = new Font("Ubuntu Bold", 16);
 	public ObservableList<Boolean> checkData = FXCollections.observableArrayList(false, false, false);
@@ -53,13 +57,16 @@ public class DataLayout {
 		VBox finishedLayout = new VBox(10);
 		separator1 = new Separator(Orientation.HORIZONTAL);
 		separator2 = new Separator(Orientation.HORIZONTAL);
+		separator3 = new Separator(Orientation.HORIZONTAL);
 		separator1.setCenterShape(true);
 		separator2.setCenterShape(true);
-		separator1.setPadding(new Insets(0, 0, 0, 0));
+		separator3.setCenterShape(true);
 
 		addNewCategoryButton = new Button();
 		addDataButton = new Button("Add new data");
 		addDataButton.setDisable(true);
+		editDataButton = new Button("Edit");
+		deleteDataButton = new Button("Delete");
 		categoryLabel = new Label("Category:");
 		valueLabel = new Label("Amount:");
 		calendarLabel = new Label("Day:");
@@ -70,7 +77,10 @@ public class DataLayout {
 		calendarHBox = new HBox(10);
 		completeLayout = new VBox(5);
 		calendar = new DatePicker();
-
+		logsHBox = new HBox(10);
+		logsHBox.getChildren().addAll(editDataButton, deleteDataButton);
+		logsHBox.setAlignment(Pos.CENTER);
+		
 		valueInput.setPromptText("Enter value");
 		valueHBox.setPadding(new Insets(0, 0, 0, 10));
 		calendarHBox.setPadding(new Insets(0, 0, 0, 32));
@@ -81,23 +91,25 @@ public class DataLayout {
 		categoryHBox.setAlignment(Pos.CENTER);
 		calendarHBox.setAlignment(Pos.CENTER);
 		completeLayout.setAlignment(Pos.CENTER);
-		addNewCategoryButton.setId("add-button");
-
-		typeComboBox.setId("combo-box1");
+		valueLabel.setPadding(new Insets(0, 0, 0, 6));
+		calendarLabel.setPadding(new Insets(0, 0, 0, 6));
+		
+		
 		categoryComboBox.setId("combo-box2");
 		messageLabel.setId("message-label");
+		addNewCategoryButton.setId("add-category-button");
+		addDataButton.setId("add-data-button");
+		editDataButton.setId("edit-data-button");
+		deleteDataButton.setId("delete-data-button");
 
-		typeComboBox.setPrefWidth(80);
-		typeComboBox.getItems().addAll("Expense", "Income");
-
-		typeComboBox.setPromptText("Type");
 		addNewCategoryButton.setOnAction(event -> AddNewCategory.addNewCategoryWindow());
 
-		valueHBox.getChildren().addAll(valueLabel, valueInput, typeComboBox);
+		valueHBox.getChildren().addAll(valueLabel, valueInput);
+		valueHBox.setAlignment(Pos.CENTER_LEFT);
 		categoryHBox.getChildren().addAll(categoryLabel, getCategoryComboBox(), addNewCategoryButton);
 		calendarHBox.getChildren().addAll(calendarLabel, calendar);
 		completeLayout.getChildren().addAll(valueHBox, separator1, categoryHBox, separator2, calendarHBox,
-				addDataButton);
+				separator3, addDataButton);
 
 		// Add new Data with amount, category and date
 		addDataButton.setOnAction(event -> {
@@ -151,7 +163,6 @@ public class DataLayout {
 		valueInput.setStyle("-fx-font: 16px \"Ubuntu Bold\";" + "-fx-text-fill: white");
 		calendar.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
 		categoryComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
-		typeComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
 
 		completeLayout.getStylesheets().add("DataLayout.css");
 		completeLayout.getStyleClass().add("vbox");
@@ -159,7 +170,7 @@ public class DataLayout {
 		valueHBox.getStyleClass().add("hbox");
 		calendarHBox.getStyleClass().add("hbox");
 
-		finishedLayout.getChildren().addAll(completeLayout, getContentLogs());
+		finishedLayout.getChildren().addAll(completeLayout, getContentLogs(), logsHBox);
 		return finishedLayout;
 
 	}
@@ -190,7 +201,7 @@ public class DataLayout {
 		categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
 		dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-		contentLogs.setPrefSize(330, 470);
+		contentLogs.setPrefSize(330, 400);
 		amountColumn.setMinWidth(107);
 		categoryColumn.setMinWidth(107);
 		dateColumn.setMinWidth(107);
