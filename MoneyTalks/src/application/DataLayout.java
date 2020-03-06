@@ -1,8 +1,8 @@
 package application;
 
-import java.time.LocalDate;
-import java.util.Date;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -44,6 +44,7 @@ public class DataLayout {
 	public ComboBox<String> typeComboBox = new ComboBox<>();
 
 	public Font font = new Font("Ubuntu Bold", 16);
+	public ObservableList<Boolean> checkData = FXCollections.observableArrayList(false, false, false);
 
 	public static ComboBox<String> categoryComboBox = new ComboBox<>();
 
@@ -58,7 +59,7 @@ public class DataLayout {
 
 		addNewCategoryButton = new Button();
 		addDataButton = new Button("Add new data");
-		// addDataButton.setVisible(false);
+		addDataButton.setDisable(true);
 		categoryLabel = new Label("Category:");
 		valueLabel = new Label("Amount:");
 		calendarLabel = new Label("Day:");
@@ -106,11 +107,42 @@ public class DataLayout {
 			valueInput.clear();
 		});
 
-		valueInput.setOnInputMethodTextChanged(event -> addDataMethod());
-		calendar.setOnInputMethodTextChanged(event -> addDataMethod());
-		typeComboBox.setOnInputMethodTextChanged(event -> addDataMethod());
-		categoryComboBox.setOnInputMethodTextChanged(event -> addDataMethod());
+		//check if necessary data is informed
+		checkData.addListener((ListChangeListener<Boolean>) c -> {
+			if (checkData.get(0) == true && checkData.get(1) == true && checkData.get(2) == true) {
+				addDataButton.setDisable(false);
+			}
+			else {
+				addDataButton.setDisable(true);
+				System.out.println("disabled");
+			}
+		});
 
+		categoryComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkData.set(0, true));
+		calendar.setOnAction(event -> {
+			if (!calendar.getValue().toString().isBlank()) {
+				checkData.set(1, true);
+			}
+			else {
+				checkData.set(1, false);
+			}
+		});
+		valueInput.textProperty().addListener(( observable, oldValue, newValue ) -> {
+			if (!valueInput.getText().isBlank()) {
+				try {
+					Integer.parseInt(valueInput.getText());
+					checkData.set(2, true);
+				}
+				catch (NumberFormatException e) {
+					checkData.set(2, false);
+				}
+			}
+			else {
+				checkData.set(2, false);
+			}
+		});
+		
+		
 		completeLayout.setPadding(new Insets(10, 10, 10, 10));
 
 		valueLabel.setFont(font);
@@ -130,16 +162,6 @@ public class DataLayout {
 		finishedLayout.getChildren().addAll(completeLayout, getContentLogs());
 		return finishedLayout;
 
-	}
-
-	public void addDataMethod() {
-
-		if (valueInput.getText() != null) {
-
-			addDataButton.setVisible(true);
-			System.out.println("teste");
-
-		}
 	}
 
 	public ComboBox<String> getCategoryComboBox() {
