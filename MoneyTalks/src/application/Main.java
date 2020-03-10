@@ -12,14 +12,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	Button teste;
 	Stage window;
 	Scene scene;
 	applicationTrees months = new applicationTrees();
 	TreeView<String> monthTree = months.getMonths();
 	applicationMenu menu = new applicationMenu();
+	
 	DataLayout dataLayout = new DataLayout();
-	Data data = new Data();
+	
 	Tab spendingsTab;
 	Tab incomeTab;
 	TabPane tabPane;
@@ -35,15 +35,12 @@ public class Main extends Application {
 		window.setTitle("MoneyTalks");
 		window.setMaximized(true);
 
-		BorderPane layout = new BorderPane();
-		layout.setRight(dataLayout.newData());
-		layout.setCenter(data.createChart());
-		
 		tabPane = new TabPane();
 		spendingsTab = new Tab("Spendings");
 		incomeTab = new Tab("Income");
 		tabPane.getTabs().addAll(spendingsTab, incomeTab);
-		spendingsTab.setContent(layout);
+		spendingsTab.setContent(dataLayout.createSpendingsLayout());
+		incomeTab.setContent(dataLayout.createIncomeLayout());
 		
 		vbox = new VBox();
 		vbox.getChildren().addAll(menu.menuItems(), tabPane);
