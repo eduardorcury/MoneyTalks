@@ -7,15 +7,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -25,10 +22,9 @@ public class Data extends Category {
 	private Float amount;
 	private Category category;
 	private LocalDate date;
-	private NumberAxis xAxis;
-	private CategoryAxis yAxis;
-	private static StackedBarChart<Number, String> spendingsChart;
+	
 	private static ObservableList<Data> dataList = FXCollections.observableArrayList();
+	
 	private static ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
 	private static ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
 
@@ -52,7 +48,8 @@ public class Data extends Category {
 			}
 		}
 		dataList.add(this);
-		spendingsChart.getData().add(addChartData());
+		ApplicationCharts.addChartData(this);
+
 	}
 
 	public LocalDate getDate() {
@@ -118,18 +115,6 @@ public class Data extends Category {
 		newNode.setStyle("-fx-bar-fill: rgb(" + this.getCategory().getCategoryColor().getRed()*255 + ","
 				+ this.getCategory().getCategoryColor().getGreen()*255 + ","
 				+ this.getCategory().getCategoryColor().getBlue()*255 + ");");
-	}
-
-	public StackedBarChart<Number, String> createChart() {
-
-		xAxis = new NumberAxis();
-		yAxis = new CategoryAxis();
-		
-		spendingsChart = new StackedBarChart<>(xAxis, yAxis);
-		spendingsChart.getStylesheets().add("/BarChart.css");
-		
-		spendingsChart.legendVisibleProperty().setValue(false);
-		return spendingsChart;
 	}
 	
 	class OnDataHover extends StackPane {

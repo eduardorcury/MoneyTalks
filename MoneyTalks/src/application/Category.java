@@ -1,7 +1,7 @@
 package application;
 
-import java.util.ArrayList;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
 public class Category {
@@ -9,7 +9,7 @@ public class Category {
 	private String categoryName;
 	private String categoryType;
 	private Color categoryColor;
-	public static ArrayList<Category> categories = new ArrayList<Category>();
+	public static ObservableList<Category> categories = FXCollections.observableArrayList();
 	//color array with the sequence in colorButtons.css
 	public Color[] colors = {
 			Color.rgb(255,102,102),
@@ -42,15 +42,16 @@ public class Category {
 	public Category() {
 
 		this.categoryName = "";
-		this.categoryType = "Spending";
+		this.categoryType = "Spendings";
 		this.categoryColor = Color.BLUE;
 	}
 
-	public Category(String categoryName, Color categoryColor) {
+	public Category(String categoryName, Color categoryColor, String categoryType) {
 
 		this.categoryName = categoryName;
 		this.categoryColor = categoryColor;
-
+		this.categoryType = categoryType;
+		
 	}
 
 	public String getCategoryName() {
@@ -86,6 +87,6 @@ public class Category {
 	public void categoriesArrayList() {
 		
 		categories.add(this);
-		System.out.println(categories.size());
+	
 	}
 }

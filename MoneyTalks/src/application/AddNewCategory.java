@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -13,21 +14,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AddNewCategory extends DataLayout {
+public class AddNewCategory {
+
+	private HBox hbox1;
+	private HBox hbox2;
+	private VBox layout;
+	private Scene scene;
+	private Label categoryLabel;
+	private Button cancelButton;
+	private Button confirmButton;
+	private TilePane buttonsLayout; 
+	private TextField categoryField;
+	private CategoryColor colorButtons; 
+	private Stage addNewCategoryStage;
 	
-	private static HBox hbox1;
-	private static HBox hbox2;
-	private static VBox layout;
-	private static Scene scene;
-	private static Label categoryLabel;
-	private static Button cancelButton;
-	private static Button confirmButton;
-	private static TilePane buttonsLayout; 
-	private static TextField categoryField;
-	private static CategoryColor colorButtons; 
-	private static Stage addNewCategoryStage;
-	
-	public static void addNewCategoryWindow() {
+	AddNewCategory(ComboBox<String> categoryComboBox, String type) {
 		
 		hbox1 = new HBox(10);
 		hbox2 = new HBox(10);
@@ -64,15 +65,15 @@ public class AddNewCategory extends DataLayout {
 		addNewCategoryStage.setScene(scene);
 		addNewCategoryStage.show();
 		
-		confirmButton.setOnAction(event -> confirm());
+		confirmButton.setOnAction(event -> confirm(categoryComboBox, type));
 		cancelButton.setOnAction(event -> addNewCategoryStage.close());
 
 	}
 	
-	public static Category confirm() {
+	public Category confirm(ComboBox<String> categoryComboBox, String type) {
 		
-		Category newCategory = new Category(categoryField.getText(), colorButtons.buttonColor);
-		setCategoryComboBox(categoryField.getText());
+		Category newCategory = new Category(categoryField.getText(), colorButtons.buttonColor, type);
+		categoryComboBox.getItems().add(categoryField.getText());
 		newCategory.categoriesArrayList();
 		addNewCategoryStage.close();
 		categoryComboBox.setValue(newCategory.getCategoryName());
