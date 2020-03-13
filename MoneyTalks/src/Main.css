@@ -1,0 +1,51 @@
+.tab-pane {
+    -fx-tab-min-height: 30;
+    -fx-tab-max-height: 30;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-radius: 10 10 0 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: rgb(86, 6, 172);
+    -fx-font: 15px "Ubuntu Bold";
+    -fx-pref-width: 100.0;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: white;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-text-fill: white;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover{
+    -fx-border-color: rgb(86, 6, 172);
+    -fx-border-width: 2;
+    -fx-border-radius: 10 10 0 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: rgb(86, 6, 172);
+    -fx-text-fill: white;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: rgba(86, 6, 172, 0.3);
+}
+
+.tab-pane:top > .tab-header-area {
+    -fx-padding: 0 2 0 5; /* 5 2 0 5 */
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
+    -fx-background-color: white;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:disabled {
+    -fx-color: white;
+}
+
