@@ -17,9 +17,11 @@ public class Main extends Application {
 	applicationMenu menu = new applicationMenu();
 	
 	DataLayout dataLayout = new DataLayout();
+	Overview overview = new Overview();
 	
 	Tab spendingsTab;
 	Tab incomeTab;
+	Tab overviewTab;
 	TabPane tabPane;
 	VBox vbox;
 	
@@ -36,9 +38,12 @@ public class Main extends Application {
 		tabPane = new TabPane();
 		spendingsTab = new Tab("Spendings");
 		incomeTab = new Tab("Income");
-		tabPane.getTabs().addAll(spendingsTab, incomeTab);
+		overviewTab = new Tab("Overview");
+		tabPane.getTabs().addAll(spendingsTab, incomeTab, overviewTab);
 		spendingsTab.setContent(dataLayout.createSpendingsLayout());
 		incomeTab.setContent(dataLayout.createIncomeLayout());
+		overviewTab.setContent(overview.createOverviewLayout());
+		
 		
 		vbox = new VBox();
 		vbox.getChildren().addAll(menu.menuItems(), tabPane);

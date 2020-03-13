@@ -1,6 +1,5 @@
 package application;
 
-
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.ToggleButton;

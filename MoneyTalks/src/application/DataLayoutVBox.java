@@ -119,7 +119,7 @@ public class DataLayoutVBox {
 		completeLayout.getChildren().addAll(valueHBox, separator1, categoryHBox, separator2, calendarHBox,
 				separator3, addDataButton);
 
-		// Add new Data with amount, category and date
+		// Add new application.Data with amount, category and date
 		addDataButton.setOnAction(event -> {
 			Data newData = new Data(Float.parseFloat(valueInput.getText()), categoryComboBox.getValue(),
 					calendar.getValue());

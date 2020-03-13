@@ -1,0 +1,23 @@
+.button {
+	-fx-min-height: 30;
+	-fx-min-width: 30;
+	-fx-max-height: 30;
+	-fx-max-width: 30;
+	-fx-border-color: black;
+	-fx-border-width: 3;
+	-fx-background-radius: 5;
+	-fx-border-radius: 5;
+}
+
+.label {
+	-fx-font: 16px "Ubuntu Bold";
+}
+
+.vbox {
+	-fx-min-height: 500;
+	-fx-max-height: 500;
+	-fx-min-width: 250;
+	-fx-max-width: 250;
+	-fx-border-color: black;
+	-fx-border-width: 3;
+}

@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -23,7 +22,7 @@ public class Data extends Category {
 	private Category category;
 	private LocalDate date;
 	
-	private static ObservableList<Data> dataList = FXCollections.observableArrayList();
+	public static ObservableList<Data> dataList = FXCollections.observableArrayList();
 	
 	private static ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
 	private static ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
@@ -49,7 +48,7 @@ public class Data extends Category {
 		}
 		dataList.add(this);
 		ApplicationCharts.addChartData(this);
-
+		Overview.updateVBox(this);
 	}
 
 	public LocalDate getDate() {
@@ -94,7 +93,7 @@ public class Data extends Category {
 	}
 
 	public XYChart.Series<Number, String> addChartData() {
-		// add this Data object to Observable List
+		// add this application.Data object to Observable List
 		XYChart.Data<Number, String> newData = new XYChart.Data<Number, String>(this.getAmount(), this.getCategory().getCategoryName());
 		XYChart.Series<Number, String> dataSeries = new XYChart.Series<Number, String>();
 		

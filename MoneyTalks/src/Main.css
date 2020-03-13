@@ -14,10 +14,6 @@
     -fx-pref-width: 100.0;
 }
 
-.tab-pane > .tab-header-area > .tab-header-background {
-    -fx-background-color: white;
-}
-
 .tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
     -fx-text-fill: white;
 }
@@ -33,12 +29,16 @@
     -fx-text-fill: white;
 }
 
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-width: 0;
+}
+
 .tab-pane > .tab-header-area > .tab-header-background {
     -fx-background-color: rgba(86, 6, 172, 0.3);
 }
 
 .tab-pane:top > .tab-header-area {
-    -fx-padding: 0 2 0 5; /* 5 2 0 5 */
+    -fx-padding: 0 4 0 5; /* 5 2 0 5 */
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
