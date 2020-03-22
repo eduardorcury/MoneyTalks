@@ -48,7 +48,7 @@ public class Data extends Category {
 		}
 		dataList.add(this);
 		ApplicationCharts.addChartData(this);
-		Overview.updateVBox(this);
+		Overview.updateGridPane(this);
 	}
 
 	public LocalDate getDate() {

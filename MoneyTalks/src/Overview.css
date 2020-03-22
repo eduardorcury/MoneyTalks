@@ -13,11 +13,13 @@
 	-fx-font: 16px "Ubuntu Bold";
 }
 
-.vbox {
+.grid-pane {
 	-fx-min-height: 500;
 	-fx-max-height: 500;
 	-fx-min-width: 250;
 	-fx-max-width: 250;
 	-fx-border-color: black;
 	-fx-border-width: 3;
+	-fx-vgap: 5;
 }
+
