@@ -3,13 +3,14 @@ package application;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 public class Overview {
@@ -29,6 +30,16 @@ public class Overview {
 		incomeOverview.getColumnConstraints().add(new ColumnConstraints(50));
 		incomeOverview.getColumnConstraints().add(new ColumnConstraints(100));
 		incomeOverview.getColumnConstraints().add(new ColumnConstraints(100));
+		
+		incomeOverview.getChildren().addListener((ListChangeListener<Node>) change -> {
+			while (change.next()) {
+				if (change.wasAdded()) {
+					for (Node addedNode : change.getAddedSubList()) {
+						GridPane.setHalignment(addedNode, HPos.CENTER);
+					}
+				}
+			}
+		});
 		
 		incomeItems.addListener(new ListChangeListener<GridPaneItem>() {
 			@Override
@@ -54,6 +65,16 @@ public class Overview {
 		spendingsOverview.getColumnConstraints().add(new ColumnConstraints(50));
 		spendingsOverview.getColumnConstraints().add(new ColumnConstraints(100));
 		spendingsOverview.getColumnConstraints().add(new ColumnConstraints(100));
+		
+		spendingsOverview.getChildren().addListener((ListChangeListener<Node>) change -> {
+			while (change.next()) {
+				if (change.wasAdded()) {
+					for (Node addedNode : change.getAddedSubList()) {
+						GridPane.setHalignment(addedNode, HPos.CENTER);
+					}
+				}
+			}
+		});
 		
 		spendingsItems.addListener(new ListChangeListener<GridPaneItem>() {
 			@Override
