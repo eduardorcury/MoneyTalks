@@ -37,7 +37,7 @@ public class CategoryColor extends Category{
 
 		createColorButtons();
 
-		buttonsLayout.getStylesheets().add("colorButtons.css");
+		buttonsLayout.getStylesheets().add("css/colorButtons.css");
 		
 		for (i = 0; i < buttons.length; i++) {
 			buttonsLayout.getChildren().add(buttons[i]);

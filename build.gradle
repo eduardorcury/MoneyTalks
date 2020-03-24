@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+sourceSets.main.java.srcDirs = ['src']
+
+application {
+    mainClassName = 'application.Main'
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' ]
+}

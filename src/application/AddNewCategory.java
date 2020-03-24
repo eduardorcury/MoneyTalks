@@ -59,7 +59,7 @@ public class AddNewCategory {
 		
 		buttonsLayout.setStyle("-fx-border-color: black;" + "-fx-border-width: 5");
 		
-		scene.getStylesheets().add("AddNewCategoryWindow.css");
+		scene.getStylesheets().add("css/AddNewCategoryWindow.css");
 		addNewCategoryStage.setTitle("Add new category");
 		addNewCategoryStage.setResizable(false);
 		addNewCategoryStage.setScene(scene);

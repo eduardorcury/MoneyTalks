@@ -92,7 +92,7 @@ public class DataLayoutVBox {
 		valueInput.setPromptText("Enter value");
 		valueHBox.setPadding(new Insets(0, 0, 0, 10));
 		calendarHBox.setPadding(new Insets(0, 0, 0, 32));
-		calendar.getStylesheets().add("DatePicker.css");
+		calendar.getStylesheets().add("css/DatePicker.css");
 		calendar.setPromptText("Enter item date");
 		calendar.setEditable(false);
 		valueHBox.setAlignment(Pos.CENTER);
@@ -171,7 +171,7 @@ public class DataLayoutVBox {
 		calendar.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
 		categoryComboBox.setStyle("-fx-font: 14px \"Ubuntu Bold\";");
 
-		finishedLayout.getStylesheets().add("DataLayout.css");
+		finishedLayout.getStylesheets().add("css/DataLayout.css");
 		completeLayout.getStyleClass().add("vbox");
 		categoryHBox.getStyleClass().add("hbox");
 		valueHBox.getStyleClass().add("hbox");
@@ -213,7 +213,7 @@ public class DataLayoutVBox {
 		categoryColumn.setMinWidth(107);
 		dateColumn.setMinWidth(107);
 		contentLogs.getColumns().addAll(amountColumn, categoryColumn, dateColumn);
-		contentLogs.getStylesheets().add("DataLayout.css");
+		contentLogs.getStylesheets().add("css/DataLayout.css");
 		
 		contentLogs.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			editDataButton.setDisable(false);

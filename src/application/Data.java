@@ -122,7 +122,7 @@ public class Data extends Category {
 			Label label = new Label("$" + amount.toString());
 			vbox.getChildren().addAll(label);
 			vbox.setAlignment(Pos.CENTER);
-			vbox.getStylesheets().add("BarChart.css");
+			vbox.getStylesheets().add("css/BarChart.css");
 			vbox.setId("#chart-box");
 			
 			setOnMouseEntered(event -> {

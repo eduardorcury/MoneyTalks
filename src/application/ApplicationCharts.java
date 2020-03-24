@@ -32,7 +32,7 @@ public class ApplicationCharts {
 		incomeYAxis = new CategoryAxis();
 		
 		incomeChart = new StackedBarChart<>(incomeXAxis, incomeYAxis);
-		incomeChart.getStylesheets().add("/BarChart.css");
+		incomeChart.getStylesheets().add("/css/BarChart.css");
 		incomeChart.getData().add(incomeSeries);
 		incomeChart.legendVisibleProperty().setValue(false);
 		return incomeChart;
@@ -44,7 +44,7 @@ public class ApplicationCharts {
 		spendingsYAxis = new CategoryAxis();
 		
 		spendingsChart = new StackedBarChart<>(spendingsXAxis, spendingsYAxis);
-		spendingsChart.getStylesheets().add("/BarChart.css");
+		spendingsChart.getStylesheets().add("/css/BarChart.css");
 		spendingsChart.getData().add(spendingsSeries);
 		spendingsChart.legendVisibleProperty().setValue(false);
 		return spendingsChart;
@@ -87,7 +87,7 @@ public class ApplicationCharts {
 			Label label = new Label("$" + amount.toString());
 			vbox.getChildren().addAll(label);
 			vbox.setAlignment(Pos.CENTER);
-			vbox.getStylesheets().add("BarChart.css");
+			vbox.getStylesheets().add("css/BarChart.css");
 			vbox.setId("#chart-box");
 			
 			setOnMouseEntered(event -> {

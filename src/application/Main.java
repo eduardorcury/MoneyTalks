@@ -49,7 +49,7 @@ public class Main extends Application {
 		vbox.getChildren().addAll(menu.menuItems(), tabPane);
 		
 		scene = new Scene(vbox, 400, 300);
-		scene.getStylesheets().add("Main.css");
+		scene.getStylesheets().add("css/Main.css");
 		window.setScene(scene);
 		window.show();
 

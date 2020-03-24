@@ -124,7 +124,7 @@ public class Overview {
 		overviewHBox.getChildren().addAll(incomeVBox, spendingsVBox);
 		
 		overviewLayout.setCenter(overviewHBox);
-		overviewLayout.getStylesheets().add("Overview.css");
+		overviewLayout.getStylesheets().add("css/Overview.css");
 		return overviewLayout;
 	}
 }
