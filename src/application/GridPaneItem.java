@@ -9,19 +9,23 @@ public class GridPaneItem {
 	public Label categoryLabel;
 	public Label percentLabel;
 	public String type;
+	public Data data;
 	
 	GridPaneItem(Data data) {
-		color = new Button();
-		color.setStyle("-fx-background-color: rgb(" +            
-				data.getCategory().getCategoryColor().getRed()*255 + "," +  
-				data.getCategory().getCategoryColor().getGreen()*255 + "," +
-				data.getCategory().getCategoryColor().getBlue()*255 + ");");
-		
-		categoryLabel = new Label(data.getCategory().getCategoryName());
-		percentLabel = new Label(data.getAmount().toString());
-		type = data.getCategory().getCategoryType();
+		this.data = data;
+		this.categoryLabel = new Label(data.getCategory().getCategoryName());
+		this.percentLabel = new Label(data.getAmount().toString());
+		this.type = data.getCategory().getCategoryType();
 	}
 	
+	public Data getData() {
+		return data;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
 	public Button getColor() {
 		return color;
 	}

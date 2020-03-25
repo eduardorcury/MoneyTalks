@@ -21,16 +21,14 @@ public class Overview {
 	private static ObservableList<GridPaneItem> incomeItems = FXCollections.observableArrayList();
 	private static ObservableList<GridPaneItem> spendingsItems = FXCollections.observableArrayList();
 
-	private Insets margin = new Insets(3, 0, 3, 0);
+	public GridPane createGridPane(ObservableList<GridPaneItem> list) {
+		
+		GridPane pane = new GridPane();
+		pane.setGridLinesVisible(true);
+		pane.getColumnConstraints().add(new ColumnConstraints(100));
+		pane.getColumnConstraints().add(new ColumnConstraints(100));
 
-	public GridPane createIncomeOverview() {
-		incomeOverview = new GridPane();
-		incomeOverview.setGridLinesVisible(true);
-		incomeOverview.getColumnConstraints().add(new ColumnConstraints(50));
-		incomeOverview.getColumnConstraints().add(new ColumnConstraints(100));
-		incomeOverview.getColumnConstraints().add(new ColumnConstraints(90));
-
-		incomeOverview.getRowConstraints().addListener((ListChangeListener<RowConstraints>) change -> {
+		pane.getRowConstraints().addListener((ListChangeListener<RowConstraints>) change -> {
 			while (change.next()) {
 				if (change.wasAdded()) {
 					for (RowConstraints addedRow : change.getAddedSubList()) {
@@ -41,70 +39,32 @@ public class Overview {
 			}
 		});
 		
-		incomeItems.addListener((ListChangeListener<GridPaneItem>) c -> {
+		list.addListener((ListChangeListener<GridPaneItem>) c -> {
 			while (c.next()) {
 				if (c.wasAdded()) {
 					for (GridPaneItem addedItem : c.getAddedSubList()) {
-						StackPane colorPane = new StackPane();
 						StackPane categoryPane = new StackPane();
 						StackPane percentPane = new StackPane();
+						
+						if (list.size() == 1) {
+							
+						}
+						
+						NodeColor.gridPaneCellStyle(addedItem.getData(), categoryPane, percentPane);
 
-						colorPane.setStyle("-fx-background-color: yellow, white;" +
-								"-fx-background-insets: 0, 2 0 2 2");
-						categoryPane.setStyle("-fx-background-color: yellow, white;" +
-								"-fx-background-insets: 0, 2 0 2 0");
-						percentPane.setStyle("-fx-background-color: yellow, white;" +
-								"-fx-background-insets: 0, 2 2 2 0");
-
-						incomeOverview.add(colorPane, 0, c.getFrom() + 1);
-						incomeOverview.add(categoryPane, 1, c.getFrom() + 1);
-						incomeOverview.add(percentPane, 2, c.getFrom() + 1);
-						colorPane.setAlignment(Pos.CENTER);
+						pane.add(categoryPane, 0, c.getFrom() + 1);
+						pane.add(percentPane, 1, c.getFrom() + 1);
 						categoryPane.setAlignment(Pos.CENTER);
 						percentPane.setAlignment(Pos.CENTER);
-						colorPane.getChildren().add(addedItem.getColor());
 						categoryPane.getChildren().add(addedItem.getCategoryLabel());
 						percentPane.getChildren().add(addedItem.getPercentLabel());
 					}
 				}
 			}
 		});
-		incomeOverview.getStyleClass().add("grid-pane");
-		return incomeOverview;
-	}
-	
-	public GridPane createSpendingsOverview() {
-		spendingsOverview = new GridPane();
-		spendingsOverview.setGridLinesVisible(true);
-		spendingsOverview.getColumnConstraints().add(new ColumnConstraints(50));
-		spendingsOverview.getColumnConstraints().add(new ColumnConstraints(100));
-		spendingsOverview.getColumnConstraints().add(new ColumnConstraints(100));
 		
-		spendingsOverview.getChildren().addListener((ListChangeListener<Node>) change -> {
-			while (change.next()) {
-				if (change.wasAdded()) {
-					for (Node addedNode : change.getAddedSubList()) {
-						GridPane.setHalignment(addedNode, HPos.CENTER);
-						GridPane.setMargin(addedNode, margin);
-					}
-				}
-			}
-		});
-		
-		spendingsItems.addListener((ListChangeListener<GridPaneItem>) c -> {
-			while (c.next()) {
-				if (c.wasAdded()) {
-					for (GridPaneItem addedItem : c.getAddedSubList()) {
-						spendingsOverview.add(addedItem.getColor(), 0, c.getFrom() + 1);
-						spendingsOverview.add(addedItem.getCategoryLabel(), 1, c.getFrom() + 1);
-						spendingsOverview.add(addedItem.getPercentLabel(), 2, c.getFrom() + 1);
-					}
-				}
-			}
-		});
-		
-		spendingsOverview.getStyleClass().add("grid-pane");
-		return spendingsOverview;
+		pane.getStyleClass().add("grid-pane");
+		return pane;
 	}
 	
 	public static void updateGridPane(Data data) {
@@ -122,14 +82,17 @@ public class Overview {
 	
 	public BorderPane createOverviewLayout() {
 		
+		incomeOverview = createGridPane(incomeItems);
+		spendingsOverview = createGridPane(spendingsItems);
+		
 		VBox incomeVBox = new VBox();
 		VBox spendingsVBox = new VBox();
 		incomeVBox.setAlignment(Pos.CENTER);
 		spendingsVBox.setAlignment(Pos.CENTER);
 		incomeLabel = new Label("Income");
 		spendingsLabel = new Label("Spendings");
-		incomeVBox.getChildren().addAll(incomeLabel, createIncomeOverview());
-		spendingsVBox.getChildren().addAll(spendingsLabel, createSpendingsOverview());
+		incomeVBox.getChildren().addAll(incomeLabel, incomeOverview);
+		spendingsVBox.getChildren().addAll(spendingsLabel, spendingsOverview);
 		
 		overviewLayout = new BorderPane();
 		HBox overviewHBox= new HBox();
