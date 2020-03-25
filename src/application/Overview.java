@@ -3,19 +3,21 @@ package application;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class Overview {
 
 	private GridPane incomeOverview;
 	private GridPane spendingsOverview;
-	private Label incomeLabel;
-	private Label spendingsLabel;
 	private BorderPane overviewLayout;
 	
 	private static ObservableList<GridPaneItem> incomeItems = FXCollections.observableArrayList();
@@ -24,40 +26,56 @@ public class Overview {
 	public GridPane createGridPane(ObservableList<GridPaneItem> list) {
 		
 		GridPane pane = new GridPane();
-		pane.setGridLinesVisible(true);
-		pane.getColumnConstraints().add(new ColumnConstraints(100));
-		pane.getColumnConstraints().add(new ColumnConstraints(100));
-
-		pane.getRowConstraints().addListener((ListChangeListener<RowConstraints>) change -> {
-			while (change.next()) {
-				if (change.wasAdded()) {
-					for (RowConstraints addedRow : change.getAddedSubList()) {
-						addedRow.setMinHeight(40);
-						addedRow.setMaxHeight(40);
-					}
-				}
-			}
-		});
+		pane.getColumnConstraints().add(new ColumnConstraints(110));
+		pane.getColumnConstraints().add(new ColumnConstraints(110));
 		
 		list.addListener((ListChangeListener<GridPaneItem>) c -> {
 			while (c.next()) {
 				if (c.wasAdded()) {
 					for (GridPaneItem addedItem : c.getAddedSubList()) {
+						
 						StackPane categoryPane = new StackPane();
-						StackPane percentPane = new StackPane();
+						StackPane amountPane = new StackPane();
+						Label categoryLabel = addedItem.getCategoryLabel();
+						Label amountLabel = addedItem.getAmountLabel();
 						
-						if (list.size() == 1) {
-							
-						}
+						categoryPane.getStyleClass().add("category-pane");
+						amountPane.getStyleClass().add("amount-pane");
+						NodeColor.gridPaneCellStyle(addedItem.getData(), categoryPane, amountPane);
 						
-						NodeColor.gridPaneCellStyle(addedItem.getData(), categoryPane, percentPane);
-
+						EventHandler<MouseEvent> mouseEntered = new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								NodeColor.setNodeStyle(addedItem.getData(), categoryPane);
+								NodeColor.setNodeStyle(addedItem.getData(), amountPane);
+								categoryLabel.setStyle("-fx-text-fill: white;");
+								amountLabel.setStyle("-fx-text-fill: white;");
+							}
+						};
+						
+						EventHandler<MouseEvent> mouseExited = new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								categoryPane.setStyle("-fx-background-color: white;");
+								amountPane.setStyle("-fx-background-color: white;");
+								categoryLabel.setStyle("-fx-text-fill: black;");
+								amountLabel.setStyle("-fx-text-fill: black;");
+								NodeColor.gridPaneCellStyle(addedItem.getData(), categoryPane, amountPane);
+							}
+						};
+						
+						categoryPane.setOnMouseEntered(mouseEntered);
+						categoryPane.setOnMouseExited(mouseExited);
+						amountPane.setOnMouseEntered(mouseEntered);
+						amountPane.setOnMouseExited(mouseExited);
+						
 						pane.add(categoryPane, 0, c.getFrom() + 1);
-						pane.add(percentPane, 1, c.getFrom() + 1);
+						pane.add(amountPane, 1, c.getFrom() + 1);
 						categoryPane.setAlignment(Pos.CENTER);
-						percentPane.setAlignment(Pos.CENTER);
-						categoryPane.getChildren().add(addedItem.getCategoryLabel());
-						percentPane.getChildren().add(addedItem.getPercentLabel());
+						amountPane.setAlignment(Pos.CENTER);
+						categoryPane.getChildren().add(categoryLabel);
+						amountPane.getChildren().add(amountLabel);
+						
 					}
 				}
 			}
@@ -82,6 +100,8 @@ public class Overview {
 	
 	public BorderPane createOverviewLayout() {
 		
+		Label incomeLabel;
+		Label spendingsLabel;
 		incomeOverview = createGridPane(incomeItems);
 		spendingsOverview = createGridPane(spendingsItems);
 		

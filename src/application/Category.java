@@ -9,6 +9,7 @@ public class Category {
 	private String categoryName;
 	private String categoryType;
 	private Color categoryColor;
+	private Float categoryTotal;
 	public static ObservableList<Category> categories = FXCollections.observableArrayList();
 	//color array with the sequence in colorButtons.css
 	public Color[] colors = {
@@ -41,9 +42,11 @@ public class Category {
 
 	public Category() {
 
+		
 		this.categoryName = "";
 		this.categoryType = "Spendings";
 		this.categoryColor = Color.BLUE;
+		this.categoryTotal = (float) 0.0;
 	}
 
 	public Category(String categoryName, Color categoryColor, String categoryType) {
@@ -51,6 +54,7 @@ public class Category {
 		this.categoryName = categoryName;
 		this.categoryColor = categoryColor;
 		this.categoryType = categoryType;
+		this.categoryTotal = (float) 0.0;
 		
 	}
 
@@ -84,6 +88,15 @@ public class Category {
 		categoryColor = colors[buttonId - 1];
 	}
 	
+	
+	public Float getCategoryTotal() {
+		return categoryTotal;
+	}
+
+	public void setCategoryTotal(Float categoryTotal) {
+		this.categoryTotal = categoryTotal;
+	}
+
 	public void categoriesArrayList() {
 		
 		categories.add(this);

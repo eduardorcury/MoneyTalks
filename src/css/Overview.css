@@ -10,20 +10,51 @@
 }
 
 .label {
-	-fx-font: 16px "Ubuntu Bold";
+	-fx-font: 18px "Ubuntu Bold";
 }
 
 .grid-pane {
 	-fx-min-height: 500;
 	-fx-max-height: 500;
-	-fx-min-width: 250;
-	-fx-max-width: 250;
+	-fx-min-width: 224;
+	-fx-max-width: 224;
 	-fx-border-color: rgb(86, 6, 172);
-	-fx-border-width: 3;
+	-fx-border-width: 2;
 	-fx-background-color: white;
 }
 
-.grid-pane.first-row {
-	-fx-background-insets: 0, 
+.category-pane {
+	-fx-background-insets: 0, 4 0 4 4;
+	-fx-padding: 10 0 10 0;
 }
+.amount-pane {
+	-fx-background-insets: 0, 4 4 4 0;
+	-fx-padding: 10 0 10 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

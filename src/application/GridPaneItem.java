@@ -7,14 +7,14 @@ public class GridPaneItem {
 	
 	public Button color;
 	public Label categoryLabel;
-	public Label percentLabel;
+	public Label amountLabel;
 	public String type;
 	public Data data;
 	
 	GridPaneItem(Data data) {
 		this.data = data;
 		this.categoryLabel = new Label(data.getCategory().getCategoryName());
-		this.percentLabel = new Label(data.getAmount().toString());
+		this.amountLabel = new Label("$ " + data.getCategory().getCategoryTotal().toString());
 		this.type = data.getCategory().getCategoryType();
 	}
 	
@@ -38,11 +38,11 @@ public class GridPaneItem {
 	public void setCategoryLabel(Label categoryLabel) {
 		this.categoryLabel = categoryLabel;
 	}
-	public Label getPercentLabel() {
-		return percentLabel;
+	public Label getAmountLabel() {
+		return amountLabel;
 	}
-	public void setPercentLabel(Label percentLabel) {
-		this.percentLabel = percentLabel;
+	public void setAmountLabel(Label amountLabel) {
+		this.amountLabel = amountLabel;
 	}
 	public String getType() {
 		return type;

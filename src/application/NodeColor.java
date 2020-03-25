@@ -13,18 +13,16 @@ public class NodeColor {
 		
 	}
 	
-	public static void gridPaneCellStyle (Data data, Node categoryPane, Node percentPane) {
+	public static void gridPaneCellStyle (Data data, Node categoryPane, Node amountPane) {
 		
 		categoryPane.setStyle("-fx-background-color: rgb(" +            
 				data.getCategory().getCategoryColor().getRed()*255 + "," +  
 				data.getCategory().getCategoryColor().getGreen()*255 + "," +
-				data.getCategory().getCategoryColor().getBlue()*255 + "), white;" + 
-				"-fx-background-insets: 0, 5 0 0 5");
+				data.getCategory().getCategoryColor().getBlue()*255 + "), white;");
 		
-		percentPane.setStyle("-fx-background-color: rgb(" +            
+		amountPane.setStyle("-fx-background-color: rgb(" +            
 				data.getCategory().getCategoryColor().getRed()*255 + "," +  
 				data.getCategory().getCategoryColor().getGreen()*255 + "," +
-				data.getCategory().getCategoryColor().getBlue()*255 + "), white;" + 
-				"-fx-background-insets: 0, 5 5 0 0");
+				data.getCategory().getCategoryColor().getBlue()*255 + "), white;");
 	}
 }

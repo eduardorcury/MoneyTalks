@@ -7,7 +7,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ListChangeListener.Change;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -26,7 +28,7 @@ public class Data extends Category {
 	
 	private static ObservableList<XYChart.Series<Number, String>> chartSeries = FXCollections.observableArrayList();
 	private static ObservableList<XYChart.Data<Number, String>> chartData = FXCollections.observableArrayList();
-
+	
 	public Data(Float amount, Category category, LocalDate date) {
 
 		this.amount = amount;
@@ -46,7 +48,25 @@ public class Data extends Category {
 				this.category = categories.get(i);
 			}
 		}
+		dataList.addListener(new ListChangeListener<Data>() {
+			@Override
+			public void onChanged(Change<? extends Data> c) {
+				while (c.next()) {
+					if (c.wasAdded()) {
+						for (Data newData : c.getAddedSubList()) {
+							Float total = newData.getCategory().getCategoryTotal() + newData.getAmount();
+							newData.getCategory().setCategoryTotal(total);
+							
+							System.out.println(newData.getCategory().getCategoryTotal());
+							System.out.println("teste");
+							
+						}
+					}
+				}
+			}
+		});
 		dataList.add(this);
+		
 		ApplicationCharts.addChartData(this);
 		Overview.updateGridPane(this);
 	}
