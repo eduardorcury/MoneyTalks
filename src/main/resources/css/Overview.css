@@ -18,8 +18,8 @@
 	-fx-max-height: 500;
 	-fx-min-width: 250;
 	-fx-max-width: 250;
-	-fx-border-color: black;
+	-fx-border-color: rgb(86, 6, 172);
 	-fx-border-width: 3;
-	-fx-vgap: 5;
+	-fx-background-color: white;
 }
 
