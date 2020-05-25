@@ -1,0 +1,139 @@
+.vbox {
+	-fx-background-color: white;
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 2;
+	-fx-max-width: 330;
+	-fx-min-width: 330;
+	-fx-min-height: 210;
+	-fx-max-height: 210;
+}
+
+.vbox:hover {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 2;
+	-fx-effect: dropshadow( gaussian , rgb(144, 144, 144) , 12 , 0.3 , -5 , 5 );
+}
+
+.hbox {
+	-fx-background-color: transparent;
+	-fx-border-color: white;
+	-fx-border-width: 0;
+	-fx-border-radius: 0;
+	-fx-pref-height: 40;
+	-fx-min-height: 40;
+	-fx-max-height: 40;
+	-fx-pref-width: 300;
+}
+
+.separator {
+	-fx-background-color: rgb(86, 6, 172);
+}
+
+#edit-data-button,
+#delete-data-button {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 2;
+	-fx-min-height: 30;
+	-fx-max-height: 30;
+	-fx-min-width: 70;
+	-fx-max-width: 70;
+	-fx-background-color: white;
+	-fx-font: 14px "Ubuntu Bold";
+	-fx-text-fill: rgb(86, 6, 172);
+}
+
+#edit-data-button:hover,
+#delete-data-button:hover {
+	-fx-background-color: rgb(86, 6, 172);
+	-fx-text-fill: white;
+	-fx-cursor: HAND;
+}
+
+#add-data-button {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 2;
+	-fx-min-height: 35;
+	-fx-max-height: 35;
+	-fx-min-width: 150;
+	-fx-max-width: 150;
+	-fx-background-color: white;
+	-fx-font: 15px "Ubuntu Bold";
+	-fx-text-fill: rgb(86, 6, 172);
+}
+#add-data-button:hover {
+	-fx-background-color: rgb(86, 6, 172);
+	-fx-text-fill: white;
+	-fx-cursor: HAND;
+}
+
+#add-category-button {
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-radius: 5;
+	-fx-border-width: 2;
+	-fx-background-image: url("/icons/add-icon.png");
+	-fx-background-size: 30;
+	-fx-background-radius: 5;
+	-fx-min-width: 30;
+    -fx-min-height: 30;
+    -fx-max-width: 30;
+    -fx-max-height: 30;
+    -fx-effect: dropshadow( gaussian , rgba(86, 6, 172, 0.3) , 8, 0.3 , 2 , 2);
+}
+
+#add-category-button:hover {
+	-fx-background-color: rgba(86, 6, 172, 0.3);
+	-fx-cursor: hand;
+}
+
+#add-category-button:focused {
+	-fx-border-color: rgb(86, 6, 172);
+}
+
+.text-field {
+	-fx-min-width: 170;
+	-fx-max-width: 170;
+	-fx-background-color: rgb(86, 6, 172);
+	-fx-alignment: "center";
+}
+
+#combo-box2 {
+	-fx-min-width: 170;
+	-fx-max-width: 170;
+	-fx-background-color: rgba(86, 6, 172, 0.3);
+
+}
+
+#combo-box2:hover {
+	-fx-border-color: rgba(86, 6, 172, 0.3);
+	-fx-border-width: 2;
+}
+
+#message-label {
+	-fx-font: 15px "Ubuntu Bold";
+	-fx-font-style: italic;
+	-fx-text-fill: rgba(86, 6, 172, 0.5);
+}
+
+#table-view {
+	-fx-font: 16px "Ubuntu Bold";
+	-fx-border-color: rgb(86, 6, 172);
+	-fx-border-width: 3;
+}
+#table-view .column-header {
+	-fx-background-color: rgb(86, 6, 172);
+}
+#table-view .table-column {
+	-fx-alignment: CENTER;
+}
+#table-view .table-cell {
+	-fx-text-fill: rgb(86, 6, 172);
+}
+#table-view .table-row-cell {
+	-fx-text-fill: white;
+}
+#table-view .column-header .label {
+    -fx-text-fill: white;
+}
+#table-view /*> column-header-background > nested-column-header >*/ .arrow {
+	-fx-background-color: white;
+}

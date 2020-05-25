@@ -1,0 +1,37 @@
+package com.erc;
+
+import com.erc.enums.Type;
+import com.erc.layout.DataVBox;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+
+public class DataLayout {
+
+    private DataVBox incomeVBox = new DataVBox(Type.INCOME);
+    private DataVBox spendingsVBox = new DataVBox(Type.SPENDINGS);
+
+    private BorderPane incomeLayout;
+    private BorderPane spendingsLayout;
+
+    public BorderPane createIncomeLayout() {
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(incomeVBox.getNewDataVBox(), incomeVBox.getDataLogs());
+
+        incomeLayout = new BorderPane();
+        incomeLayout.setRight(vbox);
+
+        return incomeLayout;
+    }
+
+    public BorderPane createSpendingsLayout() {
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(spendingsVBox.getNewDataVBox(), spendingsVBox.getDataLogs());
+
+        spendingsLayout = new BorderPane();
+        spendingsLayout.setRight(vbox);
+
+        return spendingsLayout;
+    }
+}
