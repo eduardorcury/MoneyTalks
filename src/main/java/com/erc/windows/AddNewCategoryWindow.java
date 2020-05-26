@@ -45,34 +45,38 @@ public class AddNewCategoryWindow {
         hbox2.getChildren().addAll(buttons.getConfirmButton(), buttons.getCancelButton());
         layout.getChildren().addAll(hbox1, buttonsLayout, hbox2);
 
+        buttons.getConfirmButton().setOnAction(event -> {
+            String categoryName = textFields.getCategoryField().getText();
+            Color categoryColor = selectedColor;
+            Category newCategory = new Category(null, categoryName, dataLayoutType, categoryColor);
+            addNewCategoryStage.close();
+        });
+        buttons.getCancelButton().setOnAction(event -> addNewCategoryStage.close());
+
         scene.getStylesheets().add(getClass().getResource("/css/AddNewCategoryWindow.css").toExternalForm());
+        addNewCategoryStage.setWidth(390);
+        addNewCategoryStage.setHeight(320);
         addNewCategoryStage.initModality(Modality.APPLICATION_MODAL);
         addNewCategoryStage.setTitle("Add new category");
         addNewCategoryStage.setResizable(false);
         addNewCategoryStage.setScene(scene);
         addNewCategoryStage.show();
-
-        buttons.getConfirmButton().setOnAction(event -> {
-            String categoryName = textFields.getCategoryField().getText();
-            Color categoryColor = selectedColor;
-            Category newCategory = new Category(null, categoryName, dataLayoutType, categoryColor);
-        });
-        buttons.getCancelButton().setOnAction(event -> addNewCategoryStage.close());
     }
 
     private class ColorPane {
 
         private ToggleButton[] buttons;
+        private TilePane buttonsLayout;
 
         private TilePane createColorPane() {
 
-            TilePane buttonsLayout = new TilePane();
-            buttonsLayout.setStyle("-fx-border-color: rgb(" + Colors.getRGB(selectedColor) + ");");
-
+            buttonsLayout = new TilePane();
+            buttonsLayout.setStyle("-fx-border-color: transparent;" + "-fx-border-width: 5");
             buttonsLayout.setPadding(new Insets(10, 10, 10, 10));
             buttonsLayout.setHgap(5);
             buttonsLayout.setVgap(5);
             buttonsLayout.setPrefRows(3);
+            buttonsLayout.setAlignment(Pos.CENTER);
 
             createColorButtons();
 
@@ -90,12 +94,16 @@ public class AddNewCategoryWindow {
 
             for (int i = 0; i < buttons.length ; i++) {
 
-                String buttonId = buttons[i].getId();
                 buttons[i] = new ToggleButton();
                 buttons[i].setToggleGroup(group);
                 buttons[i].setId("button-" + (i + 1));
                 buttons[i].setCursor(Cursor.HAND);
-                buttons[i].selectedProperty().addListener(event -> selectedColor = Colors.getButtonColor(buttonId));
+                String buttonId = buttons[i].getId();
+                buttons[i].selectedProperty().addListener(event -> {
+                    selectedColor = Colors.getButtonColor(buttonId);
+                    buttonsLayout.setStyle("-fx-border-color: rgb(" + Colors.getRGB(selectedColor) + ");" +
+                            "-fx-border-width: 5");
+                });
             }
         }
     }

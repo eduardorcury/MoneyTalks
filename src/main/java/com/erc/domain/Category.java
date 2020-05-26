@@ -29,7 +29,7 @@ public class Category implements Serializable {
     private List<Data> data = new ArrayList<>();
 
     public Category() {
-
+        Lists.getCategoriesList().add(this);
     }
 
     public Category(Integer id, String categoryName, Type categoryType, Color categoryColor) {
@@ -38,6 +38,9 @@ public class Category implements Serializable {
         this.categoryType = categoryType;
         this.categoryColor = categoryColor;
         this.categoryTotal = (float) 0.0;
+        Lists.getCategoriesList().add(this);
+        Lists.getComboBoxList().add(this.categoryName);
+        System.out.println(this.toString());
     }
 
     public Integer getId() {
@@ -86,6 +89,12 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return categoryName;
+        return "Category{" +
+                "id=" + id +
+                ", categoryName='" + categoryName + '\'' +
+                ", categoryType=" + categoryType +
+                ", categoryColor=" + categoryColor +
+                ", categoryTotal=" + categoryTotal +
+                '}';
     }
 }

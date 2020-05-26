@@ -6,6 +6,7 @@ import com.erc.controls.Separators;
 import com.erc.controls.TextFields;
 import com.erc.domain.Category;
 import com.erc.domain.Data;
+import com.erc.domain.Lists;
 import com.erc.enums.Type;
 import com.erc.repositories.CategoryRepository;
 import com.erc.windows.AddNewCategoryWindow;
@@ -138,6 +139,7 @@ public class DataVBox {
         categoryComboBox.setPlaceholder(addCategory);
         categoryComboBox.getPlaceholder().setOnMousePressed(event -> new AddNewCategoryWindow(dataLayoutType));
         categoryComboBox.setPromptText("Select category");
+        categoryComboBox.setItems(Lists.getComboBoxList());
 
     }
 
