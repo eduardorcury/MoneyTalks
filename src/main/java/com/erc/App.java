@@ -1,6 +1,7 @@
 package com.erc;
 
 import com.erc.layout.DataLayout;
+import com.erc.layout.OverviewLayout;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -14,41 +15,33 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    Stage window;
-    Scene scene;
-
-    DataLayout dataLayout = new DataLayout();
-
-    Tab spendingsTab;
-    Tab incomeTab;
-    Tab overviewTab;
-    TabPane tabPane;
-    VBox vbox;
-
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage primaryStage) throws Exception {
 
-        window = primaryStage;
-        window.setTitle("MoneyTalks");
-        window.setMaximized(true);
+        VBox vbox = new VBox();
+        DataLayout dataLayout = new DataLayout();
+        OverviewLayout overviewLayout = new OverviewLayout();
+        Scene scene = new Scene(vbox, 400, 300);
 
-        tabPane = new TabPane();
-        spendingsTab = new Tab("Spendings");
-        incomeTab = new Tab("Income");
-        overviewTab = new Tab("Overview");
+        primaryStage.setTitle("MoneyTalks");
+        primaryStage.setMaximized(true);
+
+        TabPane tabPane = new TabPane();
+        Tab spendingsTab = new Tab("Spendings");
+        Tab incomeTab = new Tab("Income");
+        Tab overviewTab = new Tab("Overview");
         tabPane.getTabs().addAll(spendingsTab, incomeTab, overviewTab);
-        spendingsTab.setContent(dataLayout.createSpendingsLayout());
-        incomeTab.setContent(dataLayout.createIncomeLayout());
+        spendingsTab.setContent(dataLayout.getSpendingsLayout());
+        incomeTab.setContent(dataLayout.getIncomeLayout());
+        overviewTab.setContent(overviewLayout.getOverviewLayout());
 
-        vbox = new VBox();
         vbox.getChildren().addAll(tabPane);
 
-        scene = new Scene(vbox, 400, 300);
         scene.getStylesheets().add(getClass().getResource("/css/App.css").toExternalForm());
-        window.setScene(scene);
-        window.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

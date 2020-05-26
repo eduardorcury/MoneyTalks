@@ -1,4 +1,4 @@
-package com.erc.layout;
+package com.erc.components;
 
 import com.erc.controls.Buttons;
 import com.erc.controls.Labels;

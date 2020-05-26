@@ -1,5 +1,6 @@
 package com.erc.layout;
 
+import com.erc.components.DataVBox;
 import com.erc.enums.Type;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -12,18 +13,23 @@ public class DataLayout {
     private BorderPane incomeLayout;
     private BorderPane spendingsLayout;
 
-    public BorderPane createIncomeLayout() {
+    public DataLayout() {
+        createIncomeLayout();
+        createSpendingsLayout();
+    }
 
-        VBox vbox = new VBox();
+    public void createIncomeLayout() {
+
+        VBox vbox = new VBox(8);
         vbox.getChildren().addAll(incomeVBox.getNewDataVBox(), incomeVBox.getDataLogs(), incomeVBox.getLogsHBox());
 
         incomeLayout = new BorderPane();
         incomeLayout.setRight(vbox);
         incomeLayout.setStyle("-fx-background-color: white;");
-        return incomeLayout;
+
     }
 
-    public BorderPane createSpendingsLayout() {
+    public void createSpendingsLayout() {
 
         VBox vbox = new VBox(8);
         vbox.getChildren().addAll(spendingsVBox.getNewDataVBox(), spendingsVBox.getDataLogs(), spendingsVBox.getLogsHBox());
@@ -32,6 +38,13 @@ public class DataLayout {
         spendingsLayout.setRight(vbox);
         spendingsLayout.setStyle("-fx-background-color: white;");
 
+    }
+
+    public BorderPane getIncomeLayout() {
+        return incomeLayout;
+    }
+
+    public BorderPane getSpendingsLayout() {
         return spendingsLayout;
     }
 }
