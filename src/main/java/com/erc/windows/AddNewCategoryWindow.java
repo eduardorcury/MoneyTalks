@@ -6,7 +6,7 @@ import com.erc.controls.TextFields;
 import com.erc.domain.Category;
 import com.erc.domain.Colors;
 import com.erc.enums.Type;
-import com.erc.util.HibernateUtil;
+import com.erc.util.DBService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.hibernate.Session;
 
 public class AddNewCategoryWindow {
 
@@ -48,18 +47,14 @@ public class AddNewCategoryWindow {
         layout.getChildren().addAll(hbox1, buttonsLayout, hbox2);
 
         buttons.getConfirmButton().setOnAction(event -> {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
 
             String categoryName = textFields.getCategoryField().getText();
             Color categoryColor = selectedColor;
             Category newCategory = new Category(null, categoryName, dataLayoutType, categoryColor);
 
-            session.save(newCategory);
-            session.getTransaction().commit();
-            HibernateUtil.shutdown();
-
+            DBService.saveCategory(newCategory);
             addNewCategoryStage.close();
+
         });
         buttons.getCancelButton().setOnAction(event -> addNewCategoryStage.close());
 

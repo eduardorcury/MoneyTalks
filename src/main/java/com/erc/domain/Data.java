@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Data")
+@Table(name = "data_table")
 public class Data implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,7 +33,6 @@ public class Data implements Serializable {
         this.amount = amount;
         this.category = category;
         this.date = date;
-        Logs.getContentLogs().getItems().add(this);
     }
 
     public Integer getId() {

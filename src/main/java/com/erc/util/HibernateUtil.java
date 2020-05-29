@@ -14,16 +14,17 @@ public class HibernateUtil {
     private static SessionFactory buildSessionFactory() {
         try {
             if (sessionFactory == null) {
-                System.out.println("testando");
+
                 Configuration config = new Configuration().configure(HibernateUtil.class.getResource("/config/hibernate.cfg.xml"));
-                System.out.println("sucesso");
                 config.addAnnotatedClass(Category.class);
                 config.addAnnotatedClass(Data.class);
                 StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
                 serviceRegistryBuilder.applySettings(config.getProperties());
                 ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
                 sessionFactory = config.buildSessionFactory(serviceRegistry);
+
             }
+
             return sessionFactory;
         } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);

@@ -7,6 +7,7 @@ module com.erc {
     requires net.bytebuddy;
     requires java.xml.bind;
     requires com.sun.xml.bind;
-    opens com.erc.domain to org.hibernate.orm.core;
+    requires mysql.connector.java;
+    opens com.erc.domain to org.hibernate.orm.core, javafx.base;
     exports com.erc;
 }
