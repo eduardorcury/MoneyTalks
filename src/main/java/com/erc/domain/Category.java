@@ -3,30 +3,39 @@ package com.erc.domain;
 import com.erc.enums.Type;
 import javafx.scene.paint.Color;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "Category")
 public class Category implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue
+    @Column(name = "ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "NAME", unique = true, nullable = false)
     private String categoryName;
 
+    @Column(name = "TYPE", nullable = false)
     private Type categoryType;
 
-    private Color categoryColor;
+    @Column(name = "COLOR", nullable = false)
+    private String categoryRGB;
+
+    @Column(name = "TOTAL")
     private Float categoryTotal;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category")
     private List<Data> data = new ArrayList<>();
+
+    @Transient
+    private Color categoryColor;
 
     public Category() {
         Lists.getCategoriesList().add(this);
@@ -38,6 +47,7 @@ public class Category implements Serializable {
         this.categoryType = categoryType;
         this.categoryColor = categoryColor;
         this.categoryTotal = (float) 0.0;
+        this.categoryRGB = Colors.getRGB(categoryColor);
         Lists.getCategoriesList().add(this);
         Lists.getComboBoxList().add(this.categoryName);
         System.out.println(this.toString());
@@ -85,6 +95,14 @@ public class Category implements Serializable {
 
     public void setData(List<Data> data) {
         this.data = data;
+    }
+
+    public String getCategoryRGB() {
+        return categoryRGB;
+    }
+
+    public void setCategoryRGB(String categoryRGB) {
+        this.categoryRGB = categoryRGB;
     }
 
     @Override

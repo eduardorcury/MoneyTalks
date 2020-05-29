@@ -70,7 +70,7 @@
 	-fx-border-color: rgb(86, 6, 172);
 	-fx-border-radius: 5;
 	-fx-border-width: 2;
-	-fx-background-image: url("/icons/add-icon.png");
+	-fx-background-image: url("../icons/add-icon.png");
 	-fx-background-size: 30;
 	-fx-background-radius: 5;
 	-fx-min-width: 30;

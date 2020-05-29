@@ -1,23 +1,29 @@
 package com.erc.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Data")
 public class Data implements Serializable {
 
-    @GeneratedValue
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "AMOUNT", nullable = false)
     private Float amount;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
+    @Column(name = "DATE", nullable = false)
     private LocalDate date;
 
     public Data() {}

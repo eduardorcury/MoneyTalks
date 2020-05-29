@@ -8,7 +8,7 @@ import com.erc.domain.Category;
 import com.erc.domain.Data;
 import com.erc.domain.Lists;
 import com.erc.enums.Type;
-import com.erc.repositories.CategoryRepository;
+import com.erc.util.HibernateUtil;
 import com.erc.windows.AddNewCategoryWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -20,6 +20,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import javax.persistence.NonUniqueResultException;
 
 public class DataVBox {
 
@@ -30,8 +34,6 @@ public class DataVBox {
     private Buttons buttons = new Buttons();
     private Labels labels = new Labels();
     private TextFields textFields = new TextFields();
-
-    private CategoryRepository categoryRepository;
 
     private final Type dataLayoutType;
 
@@ -84,8 +86,17 @@ public class DataVBox {
 
         // Add new application.Data with amount, category and date
         buttons.getAddDataButton().setOnAction(event -> {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query findCategoryByName = session.createQuery("from Category where name=:name");
+            findCategoryByName.setParameter("name", categoryComboBox.getValue());
+            try {
+                Category category = (Category) findCategoryByName.uniqueResult();
+            } catch (NonUniqueResultException exception) {
+
+            }
             Data newData = new Data(null, Float.parseFloat(textFields.getValueInput().getText()),
-                    categoryRepository.findByName(categoryComboBox.getValue()),
+                    (Category) findCategoryByName.uniqueResult(),
                     calendar.getValue());
             textFields.getValueInput().clear();
         });
