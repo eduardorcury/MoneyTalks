@@ -83,13 +83,14 @@ public class DataVBox {
         // Add new application.Data with amount, category and date
         buttons.getAddDataButton().setOnAction(event -> {
 
-
             Category category = DBService.findCategoryByName(categoryComboBox.getValue());
             Data newData = new Data(null, Float.parseFloat(textFields.getValueInput().getText()),
                     category, calendar.getValue());
             DBService.saveData(newData);
+            ApplicationCharts.addChartData(newData);
             dataLogs.getItems().add(newData);
             textFields.getValueInput().clear();
+
         });
 
         //check if necessary data is informed
@@ -148,7 +149,7 @@ public class DataVBox {
     private void createDataLogs() {
 
         TableColumn<Data, Float> amountColumn = new TableColumn<>("Amount");
-        TableColumn<Data, Category> categoryColumn = new TableColumn<>("Category");
+        TableColumn<Data, String> categoryColumn = new TableColumn<>("Category");
         TableColumn<Data, String> dateColumn = new TableColumn<>("Date");
 
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -160,6 +161,7 @@ public class DataVBox {
         categoryColumn.setMinWidth(107);
         dateColumn.setMinWidth(107);
 
+        dataLogs.setItems(Lists.getDataList());
         dataLogs.getStylesheets().add(getClass().getResource("/css/DataLayout.css").toExternalForm());
         dataLogs.setId("table-view");
         dataLogs.getColumns().setAll(amountColumn, categoryColumn, dateColumn);

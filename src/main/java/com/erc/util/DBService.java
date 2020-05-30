@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import javax.persistence.NonUniqueResultException;
+import java.util.List;
 
 public class DBService {
 
@@ -35,4 +36,18 @@ public class DBService {
             return null;
         }
     }
+
+    public static List<Category> getAllCategories() {
+        return (List<Category>) session.createQuery("from Category").list();
+    }
+
+    public static List<Data> getAllData() {
+
+        return (List<Data>) session.createQuery("from Data").list();
+    }
+
+    public static List<String> getAllNames() {
+        return (List<String>) session.createQuery("Select categoryName from Category").list();
+    }
+
 }

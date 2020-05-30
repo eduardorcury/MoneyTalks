@@ -1,5 +1,6 @@
 package com.erc;
 
+import com.erc.domain.Lists;
 import com.erc.layout.DataLayout;
 import com.erc.layout.OverviewLayout;
 import com.erc.util.HibernateUtil;
@@ -20,6 +21,10 @@ public class App extends Application {
     public static Session session = HibernateUtil.getSessionFactory().openSession();
 
     public static void main(String[] args) {
+
+        Lists.setCategoriesList();
+        Lists.setDataList();
+        Lists.setComboBoxList();
         launch(args);
     }
 
