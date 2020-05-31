@@ -34,6 +34,9 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     private List<Data> data = new ArrayList<>();
 
+    @OneToOne
+    private ChartData chartData;
+
     @Transient
     private Color categoryColor;
 
@@ -50,7 +53,7 @@ public class Category implements Serializable {
         this.categoryRGB = Colors.getRGB(categoryColor);
         Lists.getCategoriesList().add(this);
         Lists.getComboBoxList().add(this.categoryName);
-        System.out.println(this.toString());
+
     }
 
     public Integer getId() {
@@ -103,6 +106,18 @@ public class Category implements Serializable {
 
     public void setCategoryRGB(String categoryRGB) {
         this.categoryRGB = categoryRGB;
+    }
+
+    public void setCategoryTotal(Float categoryTotal) {
+        this.categoryTotal = categoryTotal;
+    }
+
+    public ChartData getChartData() {
+        return chartData;
+    }
+
+    public void setChartData(ChartData chartData) {
+        this.chartData = chartData;
     }
 
     @Override

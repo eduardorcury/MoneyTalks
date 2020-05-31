@@ -25,6 +25,7 @@ public class App extends Application {
         Lists.setCategoriesList();
         Lists.setDataList();
         Lists.setComboBoxList();
+        Lists.setChartDataList();
         launch(args);
     }
 

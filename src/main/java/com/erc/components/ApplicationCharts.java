@@ -1,6 +1,8 @@
 package com.erc.components;
 
+import com.erc.domain.ChartData;
 import com.erc.domain.Data;
+import com.erc.domain.Lists;
 import com.erc.enums.Type;
 import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
@@ -33,36 +35,30 @@ public class ApplicationCharts {
         spendingsChart.getData().add(spendingsSeries);
         spendingsChart.legendVisibleProperty().setValue(false);
 
+        for (ChartData chartData : Lists.getChartDataList()) {
+            if (chartData.getCategory().getCategoryType().equals(Type.INCOME)) {
+                incomeChart.getData().add(chartData.getChartSeries());
+            }
+            if (chartData.getCategory().getCategoryType().equals(Type.SPENDINGS)) {
+                spendingsChart.getData().add(chartData.getChartSeries());
+            }
+        }
     }
 
     public static void addChartData(Data data) {
 
-        Type type = data.getCategory().getCategoryType();
 
-        XYChart.Data<Number, String> newData = new XYChart.Data<>(data.getAmount(), data.getCategory().getCategoryName());
-        XYChart.Series<Number, String> dataSeries = new XYChart.Series<>();
-        dataSeries.getData().add(newData);
-
-        newData.nodeProperty().addListener((ov, oldNode, newNode) -> changeColor(newNode, data));
-
-        if (type.equals(Type.INCOME)) {
-            incomeChart.getData().add(dataSeries);
-        }
-
-        if (type.equals(Type.SPENDINGS)) {
-            spendingsChart.getData().add(dataSeries);
-        }
     }
 
     public static void changeColor(Node newNode, Data data) {
         newNode.setStyle("-fx-bar-fill: rgb(" + data.getCategory().getCategoryRGB() + ");");
     }
 
-    public StackedBarChart<Number, String> getIncomeChart() {
+    public static StackedBarChart<Number, String> getIncomeChart() {
         return incomeChart;
     }
 
-    public StackedBarChart<Number, String> getSpendingsChart() {
+    public static StackedBarChart<Number, String> getSpendingsChart() {
         return spendingsChart;
     }
 }

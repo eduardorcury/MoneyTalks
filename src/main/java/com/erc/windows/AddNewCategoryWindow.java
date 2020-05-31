@@ -4,6 +4,7 @@ import com.erc.controls.Buttons;
 import com.erc.controls.Labels;
 import com.erc.controls.TextFields;
 import com.erc.domain.Category;
+import com.erc.domain.ChartData;
 import com.erc.domain.Colors;
 import com.erc.enums.Type;
 import com.erc.util.DBService;
@@ -51,8 +52,10 @@ public class AddNewCategoryWindow {
             String categoryName = textFields.getCategoryField().getText();
             Color categoryColor = selectedColor;
             Category newCategory = new Category(null, categoryName, dataLayoutType, categoryColor);
+            ChartData newChartData = new ChartData(null, newCategory);
 
             DBService.saveCategory(newCategory);
+            DBService.saveChartData(newChartData);
             addNewCategoryStage.close();
 
         });

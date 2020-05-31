@@ -23,6 +23,10 @@ public class Data implements Serializable {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "chartData_id")
+    private ChartData chartData;
+
     @Column(name = "DATE", nullable = false)
     private LocalDate date;
 
@@ -33,6 +37,7 @@ public class Data implements Serializable {
         this.amount = amount;
         this.category = category;
         this.date = date;
+        Lists.getDataList().add(this);
     }
 
     public Integer getId() {

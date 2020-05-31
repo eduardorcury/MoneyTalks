@@ -1,6 +1,7 @@
 package com.erc.util;
 
 import com.erc.domain.Category;
+import com.erc.domain.ChartData;
 import com.erc.domain.Data;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -18,6 +19,7 @@ public class HibernateUtil {
                 Configuration config = new Configuration().configure(HibernateUtil.class.getResource("/config/hibernate.cfg.xml"));
                 config.addAnnotatedClass(Category.class);
                 config.addAnnotatedClass(Data.class);
+                config.addAnnotatedClass(ChartData.class);
                 StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
                 serviceRegistryBuilder.applySettings(config.getProperties());
                 ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
