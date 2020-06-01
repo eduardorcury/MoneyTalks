@@ -5,7 +5,6 @@ import com.erc.controls.Labels;
 import com.erc.controls.Separators;
 import com.erc.controls.TextFields;
 import com.erc.domain.Category;
-import com.erc.domain.ChartData;
 import com.erc.domain.Data;
 import com.erc.domain.Lists;
 import com.erc.enums.Type;
@@ -85,17 +84,9 @@ public class DataVBox {
         buttons.getAddDataButton().setOnAction(event -> {
 
             Category category = DBService.findCategoryByName(categoryComboBox.getValue());
-            ChartData chartData = DBService.findChartDataByCategory(category);
             Data newData = new Data(null, Float.parseFloat(textFields.getValueInput().getText()),
                     category, calendar.getValue());
-
-            if (chartData != null) {
-                chartData.getDataList().add(newData);
-                chartData.setChartData();
-                DBService.saveChartData(chartData);
-            }
             DBService.saveData(newData);
-            dataLogs.getItems().add(newData);
             textFields.getValueInput().clear();
         });
 

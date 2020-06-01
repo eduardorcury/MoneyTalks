@@ -1,6 +1,7 @@
 package com.erc.domain;
 
 import com.erc.enums.Type;
+import javafx.scene.chart.XYChart;
 import javafx.scene.paint.Color;
 
 import javax.persistence.*;
@@ -34,8 +35,8 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     private List<Data> data = new ArrayList<>();
 
-    @OneToOne
-    private ChartData chartData;
+    @Transient
+    private XYChart.Series<Number, String> categorySeries = new XYChart.Series<>();
 
     @Transient
     private Color categoryColor;
@@ -51,9 +52,16 @@ public class Category implements Serializable {
         this.categoryColor = categoryColor;
         this.categoryTotal = (float) 0.0;
         this.categoryRGB = Colors.getRGB(categoryColor);
+        categorySeries.setName(categoryName);
+
+        if (categoryType.equals(Type.INCOME)) {
+            Lists.getIncomeData().add(categorySeries);
+        }
+        else {
+            Lists.getSpendingsData().add(categorySeries);
+        }
         Lists.getCategoriesList().add(this);
         Lists.getComboBoxList().add(this.categoryName);
-
     }
 
     public Integer getId() {
@@ -112,12 +120,12 @@ public class Category implements Serializable {
         this.categoryTotal = categoryTotal;
     }
 
-    public ChartData getChartData() {
-        return chartData;
+    public XYChart.Series<Number, String> getCategorySeries() {
+        return categorySeries;
     }
 
-    public void setChartData(ChartData chartData) {
-        this.chartData = chartData;
+    public void setCategorySeries(XYChart.Series<Number, String> categorySeries) {
+        this.categorySeries = categorySeries;
     }
 
     @Override

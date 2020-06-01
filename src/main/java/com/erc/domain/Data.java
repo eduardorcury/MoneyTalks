@@ -1,5 +1,8 @@
 package com.erc.domain;
 
+import com.erc.components.ApplicationCharts;
+import javafx.scene.chart.XYChart;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -23,9 +26,8 @@ public class Data implements Serializable {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "chartData_id")
-    private ChartData chartData;
+    @Transient
+    private XYChart.Data<Number, String> chartData = new XYChart.Data<>();
 
     @Column(name = "DATE", nullable = false)
     private LocalDate date;
@@ -37,7 +39,12 @@ public class Data implements Serializable {
         this.amount = amount;
         this.category = category;
         this.date = date;
+        chartData.setXValue(amount);
+        chartData.setYValue(category.getCategoryName());
+        chartData.nodeProperty().addListener((ov, oldNode, newNode) -> ApplicationCharts.changeColor(newNode, this));
+        category.getCategorySeries().getData().add(chartData);
         Lists.getDataList().add(this);
+        System.out.println(chartData);
     }
 
     public Integer getId() {

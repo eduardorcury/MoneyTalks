@@ -25,33 +25,7 @@
 .data0.chart-bar:hover {
 	-fx-background-color: white;
 	-fx-border-width: 5;
-
 }
-
-.default-color0.chart-bar { -fx-bar-fill: rgb(255,102,102);}
-.default-color1.chart-bar { -fx-bar-fill: rgb(255,51,51);}
-.default-color2.chart-bar { -fx-bar-fill: rgb(255,0,0);}
-.default-color3.chart-bar { -fx-bar-fill: rgb(204,0,0);}
-.default-color4.chart-bar { -fx-bar-fill: rgb(153,0,0);}
-.default-color5.chart-bar { -fx-bar-fill: rgb(51,204,255);}
-.default-color6.chart-bar { -fx-bar-fill: rgb(51,153,255);}
-.default-color7.chart-bar { -fx-bar-fill: rgb(0,0,255);}
-.default-color8.chart-bar { -fx-bar-fill: rgb(0,0,204);}
-.default-color9.chart-bar { -fx-bar-fill:  rgb(102,0,153);}
-.default-color10.chart-bar { -fx-bar-fill:  rgb(102,255,102);}
-.default-color11.chart-bar { -fx-bar-fill:  rgb(0,255,51);}
-.default-color12.chart-bar { -fx-bar-fill:  rgb(0,204,0);}
-.default-color13.chart-bar { -fx-bar-fill:  rgb(0,153,0);}
-.default-color14.chart-bar { -fx-bar-fill:  rgb(0,102,0);}
-.default-color15.chart-bar { -fx-bar-fill:  rgb(255,255,153);}
-.default-color16.chart-bar { -fx-bar-fill:  rgb(255,255,0);}
-.default-color17.chart-bar { -fx-bar-fill:  rgb(255,204,0);}
-.default-color18.chart-bar { -fx-bar-fill:  rgb(255,153,0);}
-.default-color19.chart-bar { -fx-bar-fill:  rgb(255,102,0);}
-.default-color20.chart-bar { -fx-bar-fill:  rgb(204,204,204);}
-.default-color21.chart-bar { -fx-bar-fill:  rgb(153,153,153);}
-.default-color22.chart-bar { -fx-bar-fill:  rgb(102,102,102);}
-.default-color23.chart-bar { -fx-bar-fill:  rgb(51,51,51);}
 
 .axis {
 	-fx-tick-label-fill: rgb(86, 6, 172);
