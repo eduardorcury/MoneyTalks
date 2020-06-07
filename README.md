@@ -1,5 +1,5 @@
 # MoneyTalks
-Financial control software
+> Financial control software built with [JavaFX](https://openjfx.io/). Allows management of your income and spending in different categories and a nice graphic interface.
 
-Current Progress (03/2020):
-![Image 1](https://github.com/eduardorcury/MoneyTalks/blob/master/MoneyTalks1.png)
+## First Release (v0.1): 
+![](https://github.com/eduardorcury/MoneyTalks/blob/master/screenshots/image1.png)
