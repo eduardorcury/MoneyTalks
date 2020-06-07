@@ -43,6 +43,7 @@ public class Data implements Serializable {
         chartData.setYValue(category.getCategoryName());
         chartData.nodeProperty().addListener((ov, oldNode, newNode) -> ApplicationCharts.changeColor(newNode, this));
         category.getCategorySeries().getData().add(chartData);
+        category.setCategoryTotal(category.getCategoryTotal() + this.amount);
         Lists.getDataList().add(this);
         System.out.println(chartData);
     }

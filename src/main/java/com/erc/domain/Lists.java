@@ -37,8 +37,7 @@ public abstract class Lists {
             }
             if (category.getCategoryType().equals(Type.INCOME)) {
                 incomeData.add(series);
-            }
-            else {
+            } else {
                 spendingsData.add(series);
             }
         }
@@ -50,8 +49,6 @@ public abstract class Lists {
 
     public static void setDataList() {
         dataList.addAll(DBService.getAllData());
-        System.out.println(dataList);
-
     }
 
     public static ObservableList<String> getComboBoxList() {

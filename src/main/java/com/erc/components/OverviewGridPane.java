@@ -1,7 +1,7 @@
 package com.erc.components;
 
-import com.erc.domain.Colors;
 import com.erc.domain.Data;
+import com.erc.domain.Lists;
 import com.erc.enums.Type;
 import com.erc.items.GridPaneItem;
 import javafx.collections.FXCollections;
@@ -28,6 +28,10 @@ public class OverviewGridPane {
         incomePane = createGridPane(incomeItems);
         spendingsPane = createGridPane(spendingsItems);
 
+        for (Data data : Lists.getDataList()) {
+            GridPaneItem gridPaneItem = new GridPaneItem(data);
+        }
+
     }
 
     public GridPane createGridPane(ObservableList<GridPaneItem> list) {
@@ -45,7 +49,7 @@ public class OverviewGridPane {
                         StackPane amountPane = new StackPane();
                         Label categoryLabel = addedItem.getCategoryLabel();
                         Label amountLabel = addedItem.getAmountLabel();
-                        String color = Colors.getRGB(addedItem.getData().getCategory().getCategoryColor());
+                        String color = addedItem.getData().getCategory().getCategoryRGB();
 
                         categoryPane.getStyleClass().add("category-pane");
                         amountPane.getStyleClass().add("amount-pane");
@@ -115,5 +119,13 @@ public class OverviewGridPane {
 
     public GridPane getSpendingsPane() {
         return spendingsPane;
+    }
+
+    public static ObservableList<GridPaneItem> getIncomeItems() {
+        return incomeItems;
+    }
+
+    public static ObservableList<GridPaneItem> getSpendingsItems() {
+        return spendingsItems;
     }
 }

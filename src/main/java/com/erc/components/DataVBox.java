@@ -8,6 +8,7 @@ import com.erc.domain.Category;
 import com.erc.domain.Data;
 import com.erc.domain.Lists;
 import com.erc.enums.Type;
+import com.erc.items.GridPaneItem;
 import com.erc.util.DBService;
 import com.erc.windows.AddNewCategoryWindow;
 import javafx.collections.FXCollections;
@@ -86,6 +87,7 @@ public class DataVBox {
             Category category = DBService.findCategoryByName(categoryComboBox.getValue());
             Data newData = new Data(null, Float.parseFloat(textFields.getValueInput().getText()),
                     category, calendar.getValue());
+            GridPaneItem gridItem = new GridPaneItem(newData);
             DBService.saveData(newData);
             textFields.getValueInput().clear();
         });

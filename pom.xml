@@ -4,7 +4,7 @@
     <groupId>com.erc</groupId>
     <artifactId>moneytalks</artifactId>
     <description>Financial control application</description>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
